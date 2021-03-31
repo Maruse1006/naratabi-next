@@ -5,10 +5,7 @@
         </div>
         <form>
             <div class="form-group">
-            <li v-for="post in posts">
-                {{post.id}}
-            </li>
-                <input type="text" class="form" id="id" v-model="id">
+            {{post.id}}
                 <input type="text" class="form-control" id="id" v-model="title">
             </div>
             <div class="form-group">
@@ -43,6 +40,7 @@ export default {
             });
    　　　　 },
     methods: {
+
         edit : function(id) {
             axios.post(`http://127.0.0.1:8000/api/update/${id}`, {
             　　 id:this.id,
@@ -56,7 +54,6 @@ export default {
                 this.saved = true;
                 console.log('created');
             });
-            this.$router.push({ path: `edit/{id}` });
         }
     }
 }
