@@ -1,60 +1,48 @@
-<template lang="html">
-    <div class="container">
-        <div v-if="saved" class="alert alert-primary" role="alert">
-        編集しました
-        </div>
-        <form>
-            <div class="form-group">
-            <li v-for="post in posts">
-                {{post.id}}
-                {{post.title}}
-                {{post.content}}
-            </li>
-                <input type="text" class="form-control" id="id" v-model="id">
-                <input type="text" class="form-control" id="id" v-model="title">
-            </div>
-            <div class="form-group">
-                <label for="TopicContent">内容</label>
-                {{ this.$route.query.id}}<br>
-                {{ this.$route.query.content }}<br>
-                {{ this.$route.query.title }}<br>
-                <textarea class="form-control" id="id" rows="3" v-model="content"></textarea>
-            </div>
-            <button type="submit"v-on:click="edit(id)" class="btn btn-primary" >登録</button>
-        </form>
-    </div>
+<template>
+  <v-row justify="center">
+    <v-col cols="9">
+      <h2>URLパラメータ取得結果：route.params</h2>
+      {{ this.$route.params.id }}<br>
+      <br>
+      {{ this.$route.params.content }}<br>
+      <v-btn color="purple" @click="returnPage()">戻る</v-btn>
+
+      <input type="text" class="form-control"  v-model="content">
+      <button type="submit"v-on:click="editItem()" class="btn btn-primary" >登録</button>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
 import axios from 'axios';
-
 export default {
-    data: function() {
-        return {
-            saved: false,
-            posts:[],
-            id:'',
-            title: '',
-            content: '',
-        }
+  created(){
+  axios.get('http://127.0.0.1:8000/api/post/{id}')
+          .then(response => {
+          this.posts = response.data
+         console.log(response.data)
+          });
+
+  },
+  data () {
+    return {
+     id:'',
+     title:'',
+     content:'',
+    }
+  },
+  methods: {
+    returnPage() {
+      this.$router.go(-1);
     },
-    created(){
-    var id =1;
-        axios.get(`http://127.0.0.1:8000/api/post/${id}`)
-            .then(response => {
-            this.posts = response.data
-           console.log(response.data)
-            });
-   　　　　 },
-    methods: {
-    edit : function(id) {
-        axios.post(`http://127.0.0.1:8000/api/post/${id}`, {
-        　　 id:this.id,
-            title: this.title,
-            content: this.content,
-        })
-        }
-    }
-    }
+    editItem:function(id){
+     axios.get(`http://127.0.0.1:8000/api/post/${id}`)
+     .then(response=>{
+         this.posts = response.data
+         console.log(response.data)
+        });
+  }
+}
+}
 
 </script>

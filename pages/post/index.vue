@@ -23,6 +23,9 @@ data(){
  return{
    posts:[],
    name:'',
+   id:'',
+   title:'',
+   content:'',
    newItem: '',
    }
 },
@@ -54,7 +57,7 @@ data(){
        this.posts = response.data
        console.log(response.data)
       });
-      this.$router.push({ path: `post/{id}`,query:{ id: this.id, title: this.title, content: this.content} });
+      this.$router.push({ path: `post/${id}`});
     }
   }
   }
