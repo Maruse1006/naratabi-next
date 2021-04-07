@@ -4,7 +4,6 @@
   <li v-for="post in posts">
   {{post.id}}
     <button v-on:click="deleteItem(post.id)" class="btn btn-default" type="button">削除</button>
-
     <button v-on:click="editItem(post.id)" class="btn btn-default" type="button">編集</button>
   </li>
   <form @submit.prevent="ShiftItem">
@@ -35,24 +34,21 @@ data(){
          this.posts = response.data
         console.log(response.data)
          });
-　　　　 },
+           },
 
   methods:{
  deleteItem:function(id){
-
-
  //var id =1;
  axios.post(`http://127.0.0.1:8000/api/delete/${id}`)
  .then(response=>{
      this.posts = response.data
      console.log(response.data)
     });
- this.posts.splice(post)
-
+ this.posts.splice(posts)
   },
 
   editItem:function(id){
-   axios.get(`http://127.0.0.1:8000/api/post/${id}`)
+   axios.get(`http://127.0.0.1:8000/api/posts/${id}`)
    .then(response=>{
        this.posts = response.data
        console.log(response.data)
