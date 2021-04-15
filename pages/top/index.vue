@@ -1,14 +1,16 @@
 <template>
 <body>
-<div>
-
+<div class="title">
+ <p>鹿と大仏だけじゃない奈良を知る</p>
+</div>
   <img src="~/assets/image/shika.jpg">
+  <div class="search">
+     <input type="text" id="input_message"  value="奈良
+      "name="input"style="border-radius:10px;" >
+      <button　class="button" type="text"
+      @click="onSubmit()">検索</button>
   </div>
-  <li v-for="post in posts">
-  {{post.id}}
-    <button v-on:click="deleteItem(post.id)" class="btn btn-default" type="button">削除</button>
-    <button v-on:click="editItem(post.id)" class="btn btn-default" type="button">編集</button>
-  </li>
+
 </div>
 </body>
 </template>
@@ -35,26 +37,16 @@ data(){
            },
 
   methods:{
- deleteItem:function(id){
- //var id =1;
- axios.post(`http://127.0.0.1:8000/api/delete/${id}`)
+ onSubmit:function(){
+ axios.post(`http://127.0.0.1:8000/api/top`)
  .then(response=>{
      this.posts = response.data
      console.log(response.data)
     });
- this.posts.splice(posts)
-  },
-
-  editItem:function(id){
-   axios.get(`http://127.0.0.1:8000/api/posts/${id}`)
-   .then(response=>{
-       this.posts = response.data
-       console.log(response.data)
-      });
-      this.$router.push({ path: `post/${id}`});
-    }
+    this.$router.push({ path: `./post`});
   }
   }
+}
 </script>
 <style>
  body{

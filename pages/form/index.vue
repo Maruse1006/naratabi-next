@@ -16,17 +16,17 @@
             <button type="submit" class="btn btn-primary" @click.prevent="create">登録</button>
         </form>
         <!-- 商品画像 -->
-　　　　　<div class="field image-area">
-  　　　　<div v-for="(file, index) in files" :key="index" class="product-image">
-    　　　　<img :src="file" @click="selectProductImage(index)" />
-    　　　　　　<input
-      　　　　　:id="`product_image_` + index"
-      　　　　　type="file"
-      　　　　　accept="image/png,image/jpeg,image/gif"
-      　　　　　@change="uploadProductImage($event, index)"
-    　　　/>
-  　　　　</div>
-　　　　</div>
+  　<div class="field image-area">
+    <div v-for="(file, index) in files" :key="index" class="product-image">
+      <img :src="file" @click="selectProductImage(index)" />
+       <input
+        　:id="`product_image_` + index"
+        　type="file"
+      　     accept="image/png,image/jpeg,image/gif"
+        　@change="uploadProductImage($event, index)"
+     　/>
+    </div>
+  </div>
     </div>
 </template>
 
@@ -55,7 +55,6 @@ export default {
             });
         }
 
-        
+
     }
 }
-</script>
