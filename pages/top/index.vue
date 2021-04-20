@@ -3,13 +3,18 @@
 <div class="title">
  <p>鹿と大仏だけじゃない奈良を知る</p>
 </div>
+ <div class="page_image">
   <img src="~/assets/image/shika.jpg">
+ </div>
   <div class="search">
-     <input type="text" id="input_message"  value="奈良
-      "name="input"style="border-radius:10px;" >
-      <button　class="button" type="text"
-      @click="onSubmit()">検索</button>
+  <select v-model="selected_category_id">
+  <option value="">選択なし</option>
+  <option v-for="category in categories" value="">
+  {{category.name}}</option>
+</select>
   </div>
+
+</div>
 
 </div>
 </body>
@@ -20,35 +25,45 @@ import axios from 'axios';
 export default{
 data(){
  return{
-   posts:[],
-   name:'',
+   selected_category_id:'',
+   categories:[],
+   category:[],
    id:'',
-   title:'',
-   content:'',
-   newItem: '',
+   name:'',
    }
 },
  created(){
- axios.get('http://127.0.0.1:8000/api/posts')
-         .then(response => {
-         this.posts = response.data
-        console.log(response.data)
-         });
-           },
+ axios.get(`http://127.0.0.1:8000/api/posts`)
+ .then(response => {
+ this.posts = response.data
+console.log(response.data)
+ });
+ },
 
   methods:{
  onSubmit:function(){
- axios.post(`http://127.0.0.1:8000/api/top`)
+ axios.post(`http://127.0.0.1:8000/api/`,
+ {
+ id:this.id,
+ name: this.name,
+ content: this.content,
+ })
  .then(response=>{
      this.posts = response.data
-     console.log(response.data)
+     console.log(response.data);
+     this.name = '';
+     this.content = '';
+     this.saved = true;
     });
+
     this.$router.push({ path: `./post`});
   }
-  }
+  },
+
 }
 </script>
-<style>
+<style scoped>
+
  body{
  background-color:#0F0;
  }
@@ -58,6 +73,10 @@ data(){
  left:120px;
  font-size: 25px;
  margin-top:20px;
+ }
+ .page_image img{
+ width:100%;
+ height:20%;
  }
 
  .search{

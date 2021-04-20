@@ -75,7 +75,7 @@
               mdi-repeat
             </v-icon>
           </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
+          <v-list-item-title>Switch topへ(click me)</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -110,7 +110,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'ならたびnet'
     }
   }
 }
