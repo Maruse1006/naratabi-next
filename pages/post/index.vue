@@ -18,9 +18,11 @@ export default{
 data(){
  return{
    posts:[],
-   id:'',
    name:'',
+   id:'',
+   title:'',
    content:'',
+   newItem: '',
    }
 },
  created(){
@@ -58,7 +60,6 @@ data(){
  background-color:#0F0;
  }
  .title{
- width:100%;
  position:absolute;
  top:120px;
  left:120px;
