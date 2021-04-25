@@ -14,16 +14,16 @@ export default {
   created(){
   axios.get(`http://127.0.0.1:8000/api/top/${this.$route.params.id}`)
           .then(response => {
-          this.id=response.data.post.id
-          this.content=response.data.post.content
-          this.posts = response.data
+          this.posts = response.data.post
           console.log(response.data)
           });
   },
   data () {
     return {
      params:'',
-     title:'',
+     post:[],
+     id:'',
+     name:'',
      content:'',
     }
   },

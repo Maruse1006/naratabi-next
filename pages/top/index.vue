@@ -7,20 +7,17 @@
   <img src="~/assets/image/shika.jpg">
  </div>
   <div class="search">
-  <select v-model="selected_category_id">
+  <select v-model="selected_category_id"
+  v-on:click="editItem(selected_category_id)">
   <option value="">選択なし</option>
-  <option v-for="category in categories" value="">
+  <option v-for="category in categories"
+  v-on:click="editItem(category.id)" value="category_id">
     {{category.id}}
     {{ category.name}}
   </option>
 </select>
-   <button class="button" type="text"
-     v-on:click="editItem(category.id)">
-     検索
-   </button>
  </div>
   </div>
-
 </div>
 
 </div>
@@ -34,23 +31,32 @@ data(){
  return{
    selected_category_id:'',
    categories:[],
+   category:[],
    id:'',
    name:'',
    }
 },
  created(){
+ //axios.get(`http://127.0.0.1:8000/api/posts`)
+//.then(response => {
+// this.categories = response.data.categories
+ //console.log(response.data)
+ //});
+ this.getCategories()
+
+ },
+  methods:{
+ getCategories: function(selected_category_id){
  axios.get(`http://127.0.0.1:8000/api/posts`)
 .then(response => {
  this.categories = response.data.categories
  console.log(response.data)
  });
  },
-
-  methods:{
- editItem:function(id){
+ editItem:function(){
  axios.get(`http://127.0.0.1:8000/api/top/${id}`)
  .then(response=>{
-     this.posts = response.data
+     this.categories = response.data
      console.log(response.data)
     });
     this.$router.push({ path: `top/${id}`});

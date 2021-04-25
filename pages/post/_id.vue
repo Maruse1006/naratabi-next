@@ -21,7 +21,7 @@ export default {
   created(){
   axios.get(`http://127.0.0.1:8000/api/post/${this.$route.params.id}`)
           .then(response => {
-          this.title=response.data.post.title
+          this.name=response.data.post.name
           this.content=response.data.post.content
           this.posts = response.data
           console.log(response.data)
@@ -44,12 +44,12 @@ export default {
 
      axios.post(`http://127.0.0.1:8000/api/post/${this.$route.params.id}`,{
        id:this.$route.params.id,
-       title:this.title,
+       name:this.name,
        content:this.content,
      })
      .then(response=>{
          this.posts = response.data
-         this.title ='';
+         this.name ='';
          this.content = '';
          this.saved = '';
          console.log(response.data)
