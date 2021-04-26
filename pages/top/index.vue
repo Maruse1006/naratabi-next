@@ -7,17 +7,20 @@
   <img src="~/assets/image/shika.jpg">
  </div>
   <div class="search">
-  <select v-model="selected_category_id"
-  v-on:click="editItem(selected_category_id)">
+  <select v-model="selected_category_id">
   <option value="">選択なし</option>
-  <option v-for="category in categories"
-  v-on:click="editItem(category.id)" value="category_id">
+  <option v-for="category in categories" value="category_id">
     {{category.id}}
     {{ category.name}}
   </option>
 </select>
+   <button class="button" type="text"
+     v-on:click="editItem(category.id)">
+     検索
+   </button>
  </div>
   </div>
+
 </div>
 
 </div>
@@ -32,6 +35,7 @@ data(){
    selected_category_id:'',
    categories:[],
    category:[],
+   post:[],
    id:'',
    name:'',
    }
@@ -46,14 +50,14 @@ data(){
 
  },
   methods:{
- getCategories: function(selected_category_id){
+ getCategories: function(){
  axios.get(`http://127.0.0.1:8000/api/posts`)
 .then(response => {
  this.categories = response.data.categories
  console.log(response.data)
  });
  },
- editItem:function(){
+ editItem:function(id){
  axios.get(`http://127.0.0.1:8000/api/top/${id}`)
  .then(response=>{
      this.categories = response.data
