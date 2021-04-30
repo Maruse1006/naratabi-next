@@ -7,22 +7,20 @@
   <img src="~/assets/image/shika.jpg">
  </div>
   <div class="search">
-  <select v-model="selected_category_id">
-  <option value="">選択なし</option>
-  <option v-for="category in categories" value="category_id">
-    {{category.id}}
-    {{ category.name}}
-  </option>
+  <select v-model="category.id" >
+   <option v-for="category in categories"
+  value=(category.id) >
+   {{category.id}}
+
+ </option>
 </select>
-   <button class="button" type="text"
-     v-on:click="editItem(category.id)">
-     検索
-   </button>
+<button class="button" type="text" v-on:click="jump(1)">
+ 検索
+</button>
+
  </div>
   </div>
-
 </div>
-
 </div>
 </body>
 </template>
@@ -57,12 +55,7 @@ data(){
  console.log(response.data)
  });
  },
- editItem:function(id){
- axios.get(`http://127.0.0.1:8000/api/top/${id}`)
- .then(response=>{
-     this.categories = response.data
-     console.log(response.data)
-    });
+ jump:function(id){
     this.$router.push({ path: `top/${id}`});
   }
   },
