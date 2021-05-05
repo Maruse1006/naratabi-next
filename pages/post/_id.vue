@@ -3,6 +3,7 @@
     <v-col cols="9">
       <h2>URLパラメータ取得結果：route.params</h2>
       {{ this.$route.params.id }}<br>
+      {{this.$route.parames.category_id}}
       <br>
       {{this.$route.params.title}}
       {{ this.$route.params.content }}<br>

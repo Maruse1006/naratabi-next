@@ -7,17 +7,15 @@
   <img src="~/assets/image/shika.jpg">
  </div>
   <div class="search">
-  <select v-model="category.id" >
-   <option v-for="category in categories"
-  value=(category.id) >
-   {{category.id}}
+  <select v-model="category_id" v-on:change="jump(category_id)">
 
- </option>
-</select>
-<button class="button" type="text" v-on:click="jump(1)">
- 検索
-</button>
-
+  <option value="">選択なし</option>
+  <option v-for="category in categories"
+  :value= "category.id" >
+    {{category.id}}
+    {{ category.name}}
+  </option>
+ </select>
  </div>
   </div>
 </div>
@@ -30,7 +28,8 @@ import axios from 'axios';
 export default{
 data(){
  return{
-   selected_category_id:'',
+   category_id:'',
+   category_name:'',
    categories:[],
    category:[],
    post:[],
@@ -57,7 +56,8 @@ data(){
  },
  jump:function(id){
     this.$router.push({ path: `top/${id}`});
-  }
+    console.log(id)
+    }
   },
 
 }

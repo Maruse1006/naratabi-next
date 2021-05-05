@@ -3,9 +3,8 @@
   <v-row justify="center">
       <h2>URLパラメータ取得結果：route.params</h2>
       {{ this.$route.params.id }}<br>
-      {{this.$route.params.name}}
+      {{ this.$route.params.name}}
       {{ this.$route.params.content }}<br>
-　　　　<li v-for="post in posts">{{post}}</li>
   </v-row>
 </template>
 
@@ -13,21 +12,18 @@
 import axios from 'axios';
 export default {
   created(){
-  axios.get(`http://127.0.0.1:8000/api/top/${this.$route.params.id}`)
+  axios.get(`http://127.0.0.1:8000/api/top/${this.id}/${this.name}`)
           .then(response => {
           this.posts = response.data.post
           this.id = response.data.id
-          this.name= response.data.name
-
+          this.name = response.data.name
           console.log(response.data)
           });
-          console.log(name)
   },
   data () {
     return {
      params:'',
      post:[],
-     posts:[],
      id:'',
      name:'',
      content:'',
