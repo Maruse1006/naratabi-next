@@ -3,10 +3,10 @@
 <div>
   <img src="~/assets/image/shika.jpg">
   </div>
-  <li v-for="post in posts">
-  {{post.id}}
-    <button v-on:click="deleteItem(post.id)" class="btn btn-default" type="button">削除</button>
-    <button v-on:click="editItem(post.id)" class="btn btn-default" type="button">編集</button>
+  <li v-for="coment in coments">
+  {{coment}}
+    <button v-on:click="deleteItem(coment.id)" class="btn btn-default" type="button">削除</button>
+    <button v-on:click="editItem(coment.id)" class="btn btn-default" type="button">編集</button>
   </li>
 </div>
 </body>
@@ -17,7 +17,7 @@ import axios from 'axios';
 export default{
 data(){
  return{
-   posts:[],
+   coments:[],
    name:'',
    id:'',
    title:'',
@@ -28,7 +28,7 @@ data(){
  created(){
  axios.get('http://127.0.0.1:8000/api/posts')
          .then(response => {
-         this.posts = response.data
+         this.coments = response.data
         console.log(response.data)
          });
            },
@@ -38,19 +38,19 @@ data(){
  //var id =1;
  axios.post(`http://127.0.0.1:8000/api/delete/${id}`)
  .then(response=>{
-     this.posts = response.data
+     this.coments = response.data
      console.log(response.data)
     });
- this.posts.splice(posts)
+ this.coments.splice(coments)
   },
 
   editItem:function(id){
-   axios.get(`http://127.0.0.1:8000/api/posts/${id}`)
+   axios.get(`http://127.0.0.1:8000/api/post/${id}`)
    .then(response=>{
        this.posts = response.data
        console.log(response.data)
       });
-      this.$router.push({ path: `post/${id}`});
+      this.$router.push({ path: `posts/${id}`});
     }
   }
   }

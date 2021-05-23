@@ -43,7 +43,7 @@ export default {
 
     console.log(this.$route.params.id)
 
-     axios.post(`http://127.0.0.1:8000/api/post/${this.$route.params.id}`,{
+     axios.post(`http://127.0.0.1:8000/api/posts/${this.$route.params.id}`,{
        id:this.$route.params.id,
        name:this.name,
        content:this.content,
