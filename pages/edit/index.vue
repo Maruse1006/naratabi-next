@@ -41,11 +41,11 @@ export default {
             this.posts = response.data
            console.log(response.data)
             });
-   　　　　 },
+       },
     methods: {
         edit : function(id) {
             axios.post(`http://127.0.0.1:8000/api/update/${id}`, {
-            　　 id:this.id,
+                id:this.id,
                 title: this.title,
                 content: this.content,
             })

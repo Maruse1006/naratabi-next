@@ -16,6 +16,7 @@
     {{ category.name}}
   </option>
  </select>
+
  </div>
   </div>
 </div>
@@ -48,7 +49,7 @@ data(){
  },
   methods:{
  getCategories: function(){
- axios.get(`http://127.0.0.1:8000/api/posts`)
+ axios.get(`http://127.0.0.1:8000/api/top`)
 .then(response => {
  this.categories = response.data.categories
  console.log(response.data)

@@ -1,49 +1,46 @@
-<template lang="html">
-    <div class="container">
-        <div v-if="saved" class="alert alert-primary" role="alert">
-        保存しました
-
-        </div>
-        <form>
-            <div class="form-group">
-                <label for="TopicTitle">タイトル</label>
-                <input type="text" class="form-control" id="TopicTitle" v-model="name">
-            </div>
-            <div class="form-group">
-                <label for="TopicContent">内容</label>
-                <textarea class="form-control" id="TopicContent" rows="3" v-model="content"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary" @click.prevent="create">登録</button>
-        </form>
-  </div>
+<template>
+    <div>
+        <input
+            type="file"
+            accept="image/jpeg, image/png"
+            @change="onChangeImage"
+        />
+        <button @click="postImage">送信</button>
+          
     </div>
 </template>
 
 <script>
 import axios from 'axios';
 export default {
-    data: function() {
+    data() {
         return {
-            saved: false,
-            name: '',
-            content: '',
-        }
+            images: {},
+            title:"",
+        };
     },
     methods: {
-        create : function() {
-            axios.post('http://127.0.0.1:8000/api/posts', {
-                name: this.name,
-                content: this.content,
-            })
-            .then((res) => {
-                console.log(res)
-                this.name = '';
-                this.content = '';
-                this.saved = true;
-                console.log('created');
-            });
+      
+        onChangeImage: function(e) {
+            this.image = e.target.files[0];
+        },
+      
+        postImage: function() {
+          
+            const config = {
+                header: {
+                    "Content-Type": "multipart/form-data"
+                }
+            };
+            
+            var formData = new FormData();
+            
+            formData.append("image", this.image);
+
+            axios.post('http://127.0.0.1:8000/api/form/s3', formData, config).then(res => {
+                  console.log(res);
+              });
         }
-
-
     }
-}
+};
+</script>
