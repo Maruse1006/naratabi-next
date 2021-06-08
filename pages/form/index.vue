@@ -24,13 +24,17 @@ export default {
         onChangeImage: function(e) {
             this.image = e.target.files[0];
         },
-      
+        
+        
         postImage: function() {
           
             const config = {
                 header: {
                     "Content-Type": "multipart/form-data"
                 }
+                
+            
+                
             };
             
             var formData = new FormData();
