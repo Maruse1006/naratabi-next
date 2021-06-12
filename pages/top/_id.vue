@@ -5,7 +5,8 @@
       <h2>一覧結果</h2>
       <div class="name" > 
         <li v-for="post in posts" ><nuxt-link :to="`post/${post.id}`">{{post.name}}</nuxt-link></li>
-       <img v-bind:src="post.path"></div>
+       　<li v-for="post in posts" ><img v-bind:src="post.path"></li>
+       
       </div>
        
         

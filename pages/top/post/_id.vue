@@ -3,8 +3,8 @@
   <v-row justify="center">
   <div class="title">
       <h2>a</h2>
-      <div class="name" v-on:change="jump(post.id)"> 
-        <li v-for="post in posts">{{post.name}}</li>
+      <div class="name" > 
+       {{posts.name}}
         
       </div>
      </div> 
@@ -21,7 +21,7 @@ export default {
   created(){
   axios.get(`http://127.0.0.1:8000/api/top/post/${this.$route.params.id}`)
           .then(response => {
-          this.posts= response.data.post
+          this.posts= response.data.posts
           
           this.id = response.data.id
           this.name= response.data.name
@@ -36,7 +36,7 @@ export default {
      posts:[],
      post:[],
      id:'',
-     name:[],
+     name:'',
      content:'',
      path:'',
     }
