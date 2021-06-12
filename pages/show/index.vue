@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="list">
         <div v-for="image in images"><img v-bind:src="image.path"></div>
     </div>
 </template>
@@ -32,3 +32,18 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+ body{
+ background-color:#0F0;
+ }
+ .list{
+     display:flex;
+     width:50%;
+ }
+ .list img{
+   width:20%;
+ }
+ 
+ </style>

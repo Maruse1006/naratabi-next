@@ -2,13 +2,11 @@
 
   <v-row justify="center">
   <div class="title">
-      <h2>一覧結果</h2>
-      <div class="name" > 
-        <li v-for="post in posts" ><nuxt-link :to="`post/${post.id}`">{{post.name}}</nuxt-link></li>
-       <img v-bind:src="post.path"></div>
-      </div>
-       
+      <h2>a</h2>
+      <div class="name" v-on:change="jump(post.id)"> 
+        <li v-for="post in posts">{{post.name}}</li>
         
+      </div>
      </div> 
      <td>
         
@@ -21,9 +19,9 @@
 import axios from 'axios';
 export default {
   created(){
-  axios.get(`http://127.0.0.1:8000/api/top/${this.$route.params.id}`)
+  axios.get(`http://127.0.0.1:8000/api/top/post/${this.$route.params.id}`)
           .then(response => {
-          this.posts= response.data.posts
+          this.posts= response.data.post
           
           this.id = response.data.id
           this.name= response.data.name
@@ -38,7 +36,7 @@ export default {
      posts:[],
      post:[],
      id:'',
-     name:'',
+     name:[],
      content:'',
      path:'',
     }
@@ -47,7 +45,10 @@ export default {
     returnPage() {
       this.$router.go(-1);
     },
-    
+    jump:function(id){
+    this.$router.push({ path: `/${id}`});
+    console.log(id)
+    }
   },
   }
 
