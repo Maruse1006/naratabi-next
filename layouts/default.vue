@@ -101,7 +101,7 @@ export default {
       items: [
         {
           icon: 'mdi-apps',
-          title: 'top',
+          title: 'トップページへ',
           to: '/category'
         },
         {
@@ -122,8 +122,7 @@ export default {
 .v-application {
   background-color: wheat;
 }
-.v-footer{
+v-footer{
   position:absolute;
-  bottom:0;
 }
 </style>

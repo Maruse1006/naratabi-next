@@ -107,7 +107,7 @@ data(){
    top:200%;
  }
  .photoshow img{
-   width:120%;
+   width:100%;
    height:300px;
    margin:0 auto;
    top:30%;

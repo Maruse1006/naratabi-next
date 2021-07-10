@@ -83,6 +83,7 @@ export default {
  .box{
    display:flex;
    flex-wrap:wrap;
+   padding-top:20%;
  }
  .box a{
    display:flex;
