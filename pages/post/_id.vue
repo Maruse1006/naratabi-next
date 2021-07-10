@@ -20,7 +20,7 @@
 import axios from 'axios';
 export default {
   created(){
-  axios.get(`http://127.0.0.1:8000/api/post/${this.$route.params.id}`)
+  axios.get(`http://127.0.0.1:8000/api/posts/${this.$route.params.id}`)
           .then(response => {
           this.name=response.data.post.name
           this.content=response.data.post.content
@@ -33,6 +33,7 @@ export default {
      params:'',
      title:'',
      content:'',
+     post:[]
     }
   },
   methods: {

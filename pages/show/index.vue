@@ -1,7 +1,17 @@
 <template>
-    <div class="list">
-        <div v-for="image in images"><img v-bind:src="image.path"></div>
-    </div>
+ <div class="customizedClass">
+       <div class="title">
+        <h1>投稿一覧</h1>
+       </div>
+       <div class="box"> 
+          <div v-for="image in images" class="flex">{{image.title}}<img v-bind:src="image.path"> </div>
+       </div>
+       <div class="form">
+        <NuxtLink to="/form">
+           form page
+        </NuxtLink>
+        </div>
+ </div> 
 </template>
 
 <script>
@@ -13,6 +23,7 @@ export default {
             image:[],
             title:'',
             path:[],
+            customizedClass:'hoge'
         };
     },
    created(){
@@ -34,16 +45,53 @@ export default {
 </script>
 
 <style scoped>
+.title{
+    text-align:center;
+}
 
- body{
- background-color:#0F0;
+.list{
+     width:40%;
+     height:50%;
+    
+     
+    
+     
+}
+ .customizedClass {
+  height: 100vh;
+  background-color:wheat;
+  
+}
+.wrapper {
+
+}
+.flex{
+   
+  display:flex;
+   flex-direction:column;
+    width:50%;
+    text-align:center;
+    left:10%;
+}
+.flex img{
+  //width:50%;
+  height:60%;
+  left:5%;
+  align-self: flex-start;
+
+}
+ .box{
+   display:flex;
+   flex-wrap:wrap;
  }
- .list{
-     display:flex;
-     width:50%;
+ .box a{
+   display:flex;
+   flex-direction:column;
  }
- .list img{
-   width:20%;
+ .form{
+   position:absolute;
+   top:30%;
+   z-index:100;
  }
  
  </style>

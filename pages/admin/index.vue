@@ -15,8 +15,8 @@ import loginRepository from '../../repositories/LoginRepository' //①API
 export default {
   data () {
     return {
-      name: 'gunkou1006@.gmail',
-      password: 'gunkou1006',
+      name: 'maru1006',
+      password: 'user1006@.gmail',
     }
   },
   methods:{
@@ -40,7 +40,7 @@ export default {
 
       const token=`Bearer ${document.cookie.replace(/(?:(?:^|.*;\s*)access_token\s*\=\s*([^;]*).*$)|^.*$/, "$1")}`
       console.log(token);
-        this.$router.push('/category')
+        this.$router.push('/top')
        }
        
     }

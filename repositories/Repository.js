@@ -10,8 +10,16 @@ repository.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
     // ★ここで、エラーの時の処理をかく（ログインページに戻すとか）
+    if (error.response.status == "401") {
+        console.log('ログインに失敗しました')
+        //401の時の処理をここに書く
+        location.replace('/error');
+         }
     return error.response;
 });
+
+   
+  
 
 export default repository
 

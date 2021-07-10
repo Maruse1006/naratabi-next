@@ -1,13 +1,15 @@
 <template>
 
   <v-row justify="center">
-  <div class="title">
-      <h2>a</h2>
-      <div class="name" > 
-       {{posts.name}}
-        
-      </div>
-     </div> 
+  <div class="name">
+       <div class="title">
+        <h2>詳細画面</h2>
+       </div>    
+            <div class="post_name" v-for="post in posts" >{{post.name}}</div>
+            <div class="post_image" v-for="post in posts" ><img v-bind:src="post.path" class="image" ></div>
+  </div>
+    <div class="post_content" v-for="post in posts" >{{post.content}}</div>
+    
      <td>
         
           </td>
@@ -19,10 +21,10 @@
 import axios from 'axios';
 export default {
   created(){
-  axios.get(`http://127.0.0.1:8000/api/top/post/${this.$route.params.id}`)
+  axios.get(`http://127.0.0.1:8000/api/category/post/${this.$route.params.id}`)
           .then(response => {
-          this.posts= response.data.posts
-          
+          this.posts= response.data
+           
           this.id = response.data.id
           this.name= response.data.name
           this.path = response.data.path
@@ -55,12 +57,18 @@ export default {
 </script>
 <style scoped>
 
- body{
- background-color:#0F0;
+ .title{
+   text-align:center;
  }
  .name{
   display:flex;
-  flex-wrap: wrap;
+   flex-direction:column;
+ }
+ .post_name{
+   text-align:center;
+ }
+ .post_content{
+   width:80%;
  }
  
  </style>

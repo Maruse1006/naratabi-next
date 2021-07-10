@@ -75,7 +75,7 @@
               mdi-repeat
             </v-icon>
           </v-list-item-action>
-          <v-list-item-title>Switch topへ(click me)</v-list-item-title>
+          <v-list-item-title><nuxt-link :to="`category`"> a</nuxt-link></v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -95,11 +95,14 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
+       title:'',
+           content:'',
+           saved:'',
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
+          title: 'top',
+          to: '/category'
         },
         {
           icon: 'mdi-chart-bubble',
@@ -115,3 +118,12 @@ export default {
   }
 }
 </script>
+<style scoped>
+.v-application {
+  background-color: wheat;
+}
+.v-footer{
+  position:absolute;
+  bottom:0;
+}
+</style>
