@@ -3,14 +3,16 @@
        <div class="title">
         <h1>投稿一覧</h1>
        </div>
+       <div class="form">
+       奈良の写真を投稿することができます。
+       投稿ページは
+        <NuxtLink to="/form">
+           こちらへ
+        </NuxtLink>
+        </div>
        <div class="box"> 
           <div v-for="image in images" class="flex">{{image.title}}<img v-bind:src="image.path"> </div>
        </div>
-       <div class="form">
-        <NuxtLink to="/form">
-           form page
-        </NuxtLink>
-        </div>
  </div> 
 </template>
 
@@ -58,7 +60,7 @@ export default {
      
 }
  .customizedClass {
-  height: 100vh;
+ 
   background-color:wheat;
   
 }
@@ -93,6 +95,11 @@ export default {
    position:absolute;
    top:30%;
    z-index:100;
+ }
+ .form{
+   position:absolute;
+   top:10%;
+   left:25%;
  }
  
  </style>

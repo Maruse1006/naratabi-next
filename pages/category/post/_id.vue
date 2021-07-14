@@ -70,5 +70,8 @@ export default {
  .post_content{
    width:80%;
  }
+ .image img{
+   width:20%;
+ }
  
  </style>

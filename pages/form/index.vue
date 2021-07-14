@@ -11,11 +11,13 @@
            />
          </div>
            <h2>title</h2>
+           <div class="box">
              <div class="input">
                <input type="text"  v-model="title">
              </div>
                  <button @click="postImage">送信</button>
                  <img :src="imageData" v-if="imageData">
+             </div>
     </div>
           
     </div>
@@ -24,7 +26,7 @@
 <script>
 import axios from 'axios';
 export default {
-    layout: 'sample',
+    
     data() {
         return {
             saved:false,
@@ -95,12 +97,17 @@ export default {
      background-color:wheat;
      height:100vh;
      text-align:center;
+     
  }
  .title{
      text-align:center;
  }
  .templete{
      background-color:wheat;
+ }
+ .box{
+     display:flex;
+     flex-direction:column;
  }
  
  
