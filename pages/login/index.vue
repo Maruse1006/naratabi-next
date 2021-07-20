@@ -15,8 +15,8 @@ import loginRepository from '../../repositories/LoginRepository' //①API
 export default {
   data () {
     return {
-      name: 'gunkou1006@.gmail',
-      password: 'gunkou1006',
+      name: 'aaa1006@.gmail',
+      password: 'ivusa1006',
     }
   },
   methods:{
@@ -29,7 +29,24 @@ export default {
         username: this.name,
         password: this.password,
       }
-
+      
+      const acl = {
+  article: {
+    list: (user) => {
+      if (!user.isLoggedIn) return false
+      return true
+    },
+    create: (user) => {
+      if (!user.isLoggedIn) return false
+      if (user.role === 'readonly') return false
+      return true
+    },
+    edit: (user, article) => {
+      if (!user.isLoggedIn) return false
+      if (user.role === 'admin') return true
+    }
+  }
+}
 
       const response = await loginRepository.login(params) //★処理をまとめる。
 
@@ -42,8 +59,6 @@ export default {
       console.log(token);
         this.$router.push('/category')
        }
-       
     }
-
 }
 </script>

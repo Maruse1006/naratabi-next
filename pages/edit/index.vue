@@ -1,5 +1,6 @@
 <template lang="html">
     <div class="container">
+    <EditArticle v-if="user.isLoggedIn && (user.type === 'admin' || post.owner === user.id )"></EditArticle>
         <div v-if="saved" class="alert alert-primary" role="alert">
         編集しました
         </div>
@@ -32,11 +33,12 @@ export default {
             id:'',
             title: '',
             content: '',
+            
         }
     },
     created(){
     var id =1;
-    axios.get(`http://127.0.0.1:8000/api/edit/${id}`)
+    axios.get(`http://127.0.0.1:8000/api/post/${id}`)
             .then(response => {
             this.posts = response.data
            console.log(response.data)

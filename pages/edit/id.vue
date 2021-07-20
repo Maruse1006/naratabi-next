@@ -6,7 +6,7 @@
         <form>
             <div class="form-group">
             {{post.id}}
-                <input type="text" class="form-control" id="id" v-model="title">
+                <input type="text" class="form-control" id="id" v-model="adress">
             </div>
             <div class="form-group">
                 <label for="TopicContent">内容</label>
@@ -27,16 +27,16 @@ export default {
             saved: false,
             posts:[],
             id:'',
-            title: '',
+            post:[],
             content: '',
+            adress:'',
         }
     },
     created(){
-    var id =1;
-    axios.get(`http://127.0.0.1:8000/api/edit/${id}`)
+    axios.get(`http://127.0.0.1:8000/api/posts/${id}`)
             .then(response => {
             this.posts = response.data
-           console.log(response.data)
+            console.log(response.data)
             });
    　　　　 },
     methods: {
@@ -44,12 +44,12 @@ export default {
         edit : function(id) {
             axios.post(`http://127.0.0.1:8000/api/update/${id}`, {
             　　 id:this.id,
-                title: this.title,
+                adress: this.adress,
                 content: this.content,
             })
             .then((res) => {
                 console.log(res)
-                this.title = '';
+                this.adress = '';
                 this.content = '';
                 this.saved = true;
                 console.log('created');

@@ -3,6 +3,7 @@
 <div>
   <img src="~/assets/image/shika.jpg">
   </div>
+  
   <li v-for="post in posts">
   {{post.name}}
     <button v-on:click="deleteItem(post.id)" class="btn btn-default" type="button">削除</button>
@@ -26,6 +27,29 @@ data(){
    }
 },
  created(){
+ let user = methodToGetUser()
+ 
+  user.role = 'admin'
+can(user.role, 'create', 'article') // => true
+ const acl = {
+  article: { // どれに
+    create: { // 何を
+      // 役割が
+      admin: true
+    }
+  }
+},
+const acl = {
+  article: {
+    edit: (user, article) => {
+      if (!user.isLoggedIn) return false
+      if (user.role === 'admin') return true
+      if (user.role === 'general' && user.id === article.user_id) return true
+      return false 
+    }
+  }
+}
+
  axios.get('http://127.0.0.1:8000/api/posts')
          .then(response => {
          this.posts = response.data.posts
@@ -50,7 +74,7 @@ data(){
        this.posts = response.data
        console.log(response.data)
       });
-      this.$router.push({ path: `posts/${id}`});
+      this.$router.push({ path: `edit/${id}`});
     }
   }
   }

@@ -34,9 +34,7 @@
         icon
         @click.stop="miniVariant = !miniVariant"
       >
-       
       </v-btn>
-      
         <v-icon>mdi-application</v-icon>
       </v-btn>
       
@@ -47,12 +45,15 @@
       
         <v-icon>mdi-menu</v-icon>
       </v-btn>
-    </v-app-bar>
+    </v-app-bar>s
     <v-main>
       <v-container>
         <nuxt />
       </v-container>
     </v-main>
+    <div id="app">
+    
+</div>
     
     <v-footer
       :absolute="!fixed"
@@ -64,6 +65,7 @@
 </template>
 
 <script>
+
 export default {
   data () {
     return {
@@ -100,7 +102,8 @@ export default {
 </script>
 <style scoped>
 .v-application {
-  background-color: wheat;
+  background-color:#fff;
+ 
 }
 v-footer{
   position:absolute;
