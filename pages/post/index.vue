@@ -3,7 +3,7 @@
 <div>
   <img src="~/assets/image/shika.jpg">
   </div>
-  
+  <EditArticle v-if="user.role && (user.type === 'admin' || post.owner === user.id )"></EditArticle>
   <li v-for="post in posts">
   {{post.name}}
     <button v-on:click="deleteItem(post.id)" class="btn btn-default" type="button">削除</button>
@@ -18,38 +18,41 @@ import axios from 'axios';
 export default{
 data(){
  return{
+   users:[],
+   user:[],
    posts:[],
    name:'',
    id:'',
    title:'',
    content:'',
    newItem: '',
+   isLoggedIn:'',
    }
 },
- created(){
- let user = methodToGetUser()
+//let user = methodToGetUser()
  
-  user.role = 'admin'
-can(user.role, 'create', 'article') // => true
- const acl = {
-  article: { // どれに
-    create: { // 何を
-      // 役割が
-      admin: true
-    }
-  }
-},
-const acl = {
-  article: {
-    edit: (user, article) => {
-      if (!user.isLoggedIn) return false
-      if (user.role === 'admin') return true
-      if (user.role === 'general' && user.id === article.user_id) return true
-      return false 
-    }
-  }
-}
+// user.role = 'admin'
+//can(post.role, 'create', 'article') // => true
+ //const acl = {
+  //article: { // どれに
+  //  create: { // 何を
+    //   役割が
+  //    admin: true
+  //  }
+ // }
+//},
+//const acl = {
+//  article: {
+//    edit: (user, article) => {
+   
+//      if (user.role === 'admin') return true
+     
+//    }
+//  }
+//},
 
+ created(){
+ 
  axios.get('http://127.0.0.1:8000/api/posts')
          .then(response => {
          this.posts = response.data.posts
@@ -74,7 +77,7 @@ const acl = {
        this.posts = response.data
        console.log(response.data)
       });
-      this.$router.push({ path: `edit/${id}`});
+      this.$router.push({ path: `post/${id}`});
     }
   }
   }

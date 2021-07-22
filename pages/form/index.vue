@@ -18,8 +18,7 @@
                  <button @click="postImage">送信</button>
                  <img :src="imageData" v-if="imageData">
              </div>
-    </div>
-          
+    </div>    
     </div>
 </template>
 
@@ -55,18 +54,15 @@ export default {
         },
          
         
-        
+    
         postImage: function() {
           
             const config = {
                 header: {
                     "Content-Type": "multipart/form-data"
                 }
-                
-            
-                
             };
-            
+    
             var formData = new FormData();
             
             formData.append("image", this.image);

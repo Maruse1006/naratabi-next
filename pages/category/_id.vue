@@ -1,5 +1,5 @@
 <template>
-
+ <div class="container">
   <v-row justify="center">
   <div class="list">
        <div class="title">
@@ -16,6 +16,7 @@
       </div> 
   </div>    
   </v-row>
+  </div>
   
 </template>
 
@@ -55,6 +56,10 @@ export default {
 
 </script>
 <style scoped>
+.container{
+  background-color:#DDDDDD;
+  height:100vh;
+}
 .list{
   text-align:center;
 }

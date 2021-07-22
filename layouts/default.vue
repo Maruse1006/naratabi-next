@@ -46,11 +46,11 @@
         <v-icon>mdi-menu</v-icon>
       </v-btn>
     </v-app-bar>s
-    <v-main>
+    
       <v-container>
         <nuxt />
       </v-container>
-    </v-main>
+    
     <div id="app">
     
 </div>
@@ -88,8 +88,8 @@ export default {
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          title: '編集',
+          to: '/post'
         }
       ],
       miniVariant: false,
@@ -108,5 +108,16 @@ export default {
 v-footer{
   position:absolute;
   bottom:0;
+  margin:0%;
+  padding:0%;
+}
+
+.main{
+  padding:0;
+  margin:0;
+}
+.container{
+  padding:0;
+  margin:0;
 }
 </style>

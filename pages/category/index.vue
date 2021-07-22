@@ -1,11 +1,11 @@
 <template>
-<body>
-<div class="title">
- <p>鹿と大仏だけじゃない奈良を知る</p>
-</div>
- <div class="page_image">
-  <img src="~/assets/image/shika.jpg">
+<div class="container">
+ <div class="title">
+  <p>鹿と大仏だけじゃない奈良を知る</p>
  </div>
+   <div class="page_image">
+      <img src="https://naratabi.s3.ap-northeast-1.amazonaws.com/images/S__43925506.jpg">
+  </div>
    <div class="select_title">
      <h1>下記ボタンをクリックして検索しよう</h1>
    </div>
@@ -25,12 +25,10 @@
                 <img src="https://naratabi.s3.ap-northeast-1.amazonaws.com/images/BqWJ6Maew497TkYq1oBBkuibneoMO0ERGZWKXJtu.jpeg">
           </NuxtLink>
          </div>  
-       
-     
   </div>
 </div>
 </div>
-</body>
+</div>
 </template>
 
 <script>
@@ -73,8 +71,6 @@ data(){
 }
 </script>
 <style scoped>
-
- 
  .title{
  position:absolute;
  top:20%;
@@ -85,7 +81,11 @@ data(){
  }
  .page_image img{
  width:100%;
- height:20%;
+ height:0%;
+ padding:0px;
+ marigin:0px;
+ top:0%;
+
  }
  .photoshowtitle{
    left:30%;
@@ -108,7 +108,6 @@ data(){
  }
  .photoshow img{
    width:100%;
-   height:300px;
    margin:0 auto;
    top:30%;
    left:0%;
