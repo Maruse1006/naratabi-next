@@ -1,25 +1,33 @@
 <template>
+    
     <div class="form">
-    　<div class="title">
-          <h1>写真投稿</h1>
+    <h1>写真投稿</h1>
+      <div class="back_image">
+        <img src="https://naratabi.s3.ap-northeast-1.amazonaws.com/images/sonikogen.jpg" style="width=100%">
       </div>
+       <div class="wrapper">
          <div class="file">
            <input
             type="file" ref="preview"
             accept="image/jpeg, image/png"
-            @change="onChangeImage" class="file"
+            @change="onChangeImage" class="preview"
            />
+           <img :src="imageData" v-if="imageData">
          </div>
-           <h2>title</h2>
-           <div class="box">
-             <div class="input">
-               <input type="text"  v-model="title">
+          <div class="box">
+           
              </div>
-                 <button @click="postImage">送信</button>
-                 <img :src="imageData" v-if="imageData">
-             </div>
-    </div>    
+             <button  class="input" @click="postImage">送信</button>
+             <div class="title">
+             <div class="clumn">
+             <p>タイトル </p>
+             <input type="text"  class="text" v-model="title">
+            </div>
+    </div> 
+    </div>   
+    
     </div>
+    
 </template>
 
 <script>
@@ -82,28 +90,77 @@ export default {
 };
 </script>
 <style scoped>
+h1{
+    position:absolute;
+    top:10%;
+    color:#fff;
+    font-family:serif;
+    text-align:center;
+    left:40%;
+}
+.wrapper{
+    height: 65%;
+    background-color:#fff;
+}
 .file{
-    top:40%;
+    top:50%;
     left:30%;
+    position:absolute;
+    display:flex;
+    flex-direction:column;
 }
  .input{
     border-width:10px;
   }
  .form{
-     background-color:wheat;
+     background-color:#fff;
      height:100vh;
      text-align:center;
      
  }
  .title{
      text-align:center;
+     postion:absolute;
+     top:30%;
  }
  .templete{
      background-color:wheat;
  }
  .box{
+     top:30%;
      display:flex;
      flex-direction:column;
+ }
+ .form{
+     color:#000;
+     background-color: rgb(51 51 51 / 15%);
+
+ }
+ .file img{
+     width:30%;
+ }
+ .input{
+     top:75%;
+     text-align:center;
+     position:absolute;
+     background-color:#ccc;
+     left:30%;
+     width:50%;
+ }
+ .text{
+     border:1px gray double;
+     width:50%;
+     margin-left:30%;
+ }
+ .back_image img{
+     width:100%;
+     height:50%;
+     height:200px;
+ }
+ .clumn{
+  display:flex;
+  flex-direction:column;
+  color:rgb(51 51 51 / 25%);
  }
  
  

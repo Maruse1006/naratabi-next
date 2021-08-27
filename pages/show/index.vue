@@ -10,9 +10,16 @@
            こちらへ
         </NuxtLink>
         </div>
+       <div class="wrapper">
        <div class="box"> 
-          <div v-for="image in images" class="flex">{{image.title}}<img v-bind:src="image.path"> </div>
+        <div class="content">
+          <div v-for="image in images" class="flex"><img v-bind:src="image.path">{{image.title}}
+        </div>
+        </div>
+          </div>
+           
        </div>
+       
  </div> 
 </template>
 
@@ -49,57 +56,39 @@ export default {
 <style scoped>
 .title{
     text-align:center;
+    padding-top:5%;
+    color:#000;
 }
-
-.list{
-     width:40%;
-     height:50%;
-    
-     
-    
-     
+h1{
+  font-family:Arial;
+  font-size:30px;
 }
- .customizedClass {
- 
-  background-color:wheat;
-  
+.form{
+  color:#000;
+  text-align:center;
+  padding-top:5%;
 }
-.wrapper {
-
-}
-.flex{
-   
+.content{
   display:flex;
-   flex-direction:column;
-    width:50%;
-    text-align:center;
-    left:10%;
+  flex-wrap:wrap;
+  background-color:#CCCCCC;
+  padding-top:5%;
+}
+.content a{
+ flex-direction:column;
+ 
+}
+
+.flex{
+  
+  display:flex;
+  flex-direction:column;
+  padding-left:8%;
+  border:1px solid transparent;
 }
 .flex img{
-  //width:50%;
-  height:60%;
-  left:5%;
-  align-self: flex-start;
-
+  width:120px;
+  height:100px;
 }
- .box{
-   display:flex;
-   flex-wrap:wrap;
-   padding-top:20%;
- }
- .box a{
-   display:flex;
-   flex-direction:column;
- }
- .form{
-   position:absolute;
-   top:30%;
-   z-index:100;
- }
- .form{
-   position:absolute;
-   top:10%;
-   left:25%;
- }
  
  </style>

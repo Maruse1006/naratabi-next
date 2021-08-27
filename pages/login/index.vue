@@ -16,7 +16,7 @@ export default {
   data () {
     return {
       name: 'aaa1006@.gmail',
-      password: 'ivusa1006',
+      password: 'ivu1006',
     }
   },
   methods:{

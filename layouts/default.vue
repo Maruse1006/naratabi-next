@@ -79,7 +79,7 @@ export default {
         {
           icon: 'mdi-apps',
           title: 'トップページへ',
-          to: '/category'
+          to: '/'
         },
         {
           icon: 'mdi-chart-bubble',

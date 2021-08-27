@@ -1,4 +1,4 @@
-<template>
+¥<template>
  <div class="container">
   <v-row justify="center">
   <div class="list">
@@ -7,17 +7,23 @@
        </div>
       <div class="wrapper">    
         <div class="name" > 
-          <div class="post_name" v-for="post in posts" >
+          <div class="post_name" v-for="post in this.currentPosts" >
             <div class="box"> <nuxt-link :to="`post/${post.id}`">     
-              {{post.name}}<img v-bind:src="post.path" class="image" ></nuxt-link>
-              </div>
+              {{post.name}}</nuxt-link><div class="content2">
+               {{post.content2}}
+              </div><img v-bind:src="post.path" class="image" >
+              </div>             
           </div>
         </div>
       </div> 
-  </div>    
+  </div> 
+  <v-pagination
+      v-model="page"
+      :length=7
+      @input = "pageChange"
+    ></v-pagination>   
   </v-row>
-  </div>
-  
+  </div> 
 </template>
 
 <script>
@@ -27,7 +33,8 @@ export default {
   axios.get(`http://127.0.0.1:8000/api/category/${this.$route.params.id}`)
           .then(response => {
           this.posts= response.data.posts
-          
+         
+          this.length = Math.ceil(this.posts.length/this.pageSize);
           this.id = response.data.id
           this.name= response.data.name
           this.path = response.data.path
@@ -44,12 +51,23 @@ export default {
      name:'',
      content:'',
      path:'',
+     page:1,
+     pageSize:6,
+     length:'',
     }
   },
+  computed: {
+  currentPosts: function(){
+  return this.posts.slice(this.pageSize*(this.page -1), this.pageSize*(this.page));
+ }
+},
   methods: {
     returnPage() {
       this.$router.go(-1);
     },
+    pageChange: function(pageNumber){
+    this.posts.slice(this.pageSize*(pageNumber -1), this.pageSize*(pageNumber));
+  },
     
   },
   }
@@ -57,18 +75,25 @@ export default {
 </script>
 <style scoped>
 .container{
-  background-color:#DDDDDD;
-  height:100vh;
+  background-color:#fff;
+  height:120vh;
+  width:100%;
 }
 .list{
+  text-align:left;
+  padding-top:10%;
+}
+.title{
+  color:#000;
   text-align:center;
 }
 
 .post_name{
   top:10%; 
-  width:50%;
+  width:20%;
   display:flex;
   float:left;
+  margin:0 5%;
 } 
   
 
@@ -78,10 +103,10 @@ export default {
      padding-left:20px;
 }
 .name img{
-  position:relative;
-  top:40%;
-  left:25%;
-  width:50%;
+  position: relative;
+    top: 0%;
+    left: 3%;
+    width: 100%;
 }
 .wrapper{
   width: 200%;
@@ -94,6 +119,12 @@ export default {
    display:flex;
    flex-direction:column;
    padding-top:10%;
+ }
+ .box{
+   margin:0 auto;
+ }
+ .content2{
+   color:#000;
  }
  
  </style>

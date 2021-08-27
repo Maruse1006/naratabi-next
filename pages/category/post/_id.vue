@@ -88,7 +88,7 @@ export default {
   
  .post_name{
    left:3%;
-   top:5%;
+   top:7%;
    width:60%;
    position:absolute;
    color:#696969;

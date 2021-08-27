@@ -31,7 +31,7 @@ export default {
       if (event.target.files.length === 0) {
         this.reset()
         return false
-        this.photo = event.target.files[0] ￥
+        this.photo = event.target.files[0] 
       }
 
       // ファイルが画像ではなかったら処理中断
@@ -81,5 +81,5 @@ export default {
   this.$router.push(`/photos/${response.data.id}`)
 }
   }
-
+}
 </script>

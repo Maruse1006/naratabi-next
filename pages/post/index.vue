@@ -72,12 +72,12 @@ data(){
   },
 
   editItem:function(id){
-   axios.get(`http://127.0.0.1:8000/api/posts/${id}`)
+   axios.get(`http://127.0.0.1:8000/api/edit/${id}`)
    .then(response=>{
        this.posts = response.data
        console.log(response.data)
       });
-      this.$router.push({ path: `post/${id}`});
+      this.$router.push({ path: `edit/${id}`});
     }
   }
   }
