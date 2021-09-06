@@ -71,8 +71,9 @@ h1{
 .content{
   display:flex;
   flex-wrap:wrap;
-  background-color:#CCCCCC;
+  background-color:#fff;
   padding-top:5%;
+  color:#0099FF;
 }
 .content a{
  flex-direction:column;

@@ -161,6 +161,12 @@ h1{
   display:flex;
   flex-direction:column;
   color:rgb(51 51 51 / 25%);
+  padding-top: 4%;
+ }
+ .clumn p{
+     color: rgb(51, 51, 51);
+     text-align: left;
+     padding-left: 30%;
  }
  
  

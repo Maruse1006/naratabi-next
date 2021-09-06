@@ -3,9 +3,9 @@
  <div class="title">
   <p>鹿と大仏だけじゃない奈良を知る</p>
  </div>
-   <div class="page_image">
-      <img src="https://naratabi.s3.ap-northeast-1.amazonaws.com/images/S__43925506.jpg">
-  </div>
+    <div class="page_image" :key="idx" v-for="(image, idx) in images" v-if="current_slide == idx">
+  <img class="page_image" v-bind:src="images[idx].img" :key="images[idx].img" width="450" height="300">
+    </div>
   <div class="category_search_form">
    <div class="select_title">
        <p>下記ボタンをクリックして検索しよう</p>
@@ -18,10 +18,17 @@
        </select>
       </div>  
   </div>  
+        <div class="aaa">
+         奈良の写真を投稿できます
+        </div>
         <div class="photoshow">
+        <NuxtLink to="/show">
+         <div class="post">
+         写真一覧をみる
+         </div>
+          </NuxtLink>
          <NuxtLink to="/form">
            <div class="photoshowtitle"><a>奈良の写真を投稿する！</a></div>
-           
          </NuxtLink>
         </div>  
 </div>
@@ -40,6 +47,12 @@ data(){
    post:[],
    id:'',
    name:'',
+   current_slide:0,
+   images:'',
+  images:[
+   {img:'https://naratabi.s3.ap-northeast-1.amazonaws.com/images/shika.JPG'},
+   {img:'https://naratabi.s3.ap-northeast-1.amazonaws.com/images/oomiwa.JPG'},
+   ],
    }
 },
  created(){
@@ -51,6 +64,11 @@ data(){
  this.getCategories()
 
  },
+   mounted() {
+　　setInterval(() => {
+      this.current_slide = this.current_slide < this.images.length -1 ? this.current_slide +1 : 0
+    }, 6000)
+},
   methods:{
  getCategories: function(){
  axios.get(`http://127.0.0.1:8000/api/category`)
@@ -62,9 +80,18 @@ data(){
  jump:function(id){
     this.$router.push({ path: `category/${id}`});
     console.log(id)
+    },
+    slideshow(images) {
+      const current = images[this.index];
+      const prev = images[this.index - 1] ? images[this.index - 1] : images[images.length - 1];
+      current.classList.add('fadein');
+      current.classList.remove('fadeout');
+     prev.classList.remove('fadein');
+      prev.classList.add('fadeout');
     }
+ 
   },
-
+   
 }
 </script>
 <style scoped>
@@ -84,20 +111,20 @@ data(){
  }
  .page_image img{
  background: #f2f2f3;
- width: 110%;
- height: 100%;
+ width: 100%;
+ height: 90vh;
  position:relative;
  }
  .photoshowtitle{
    position:absolute;
-   top:85%;
+   top:80%;
    color:#fff;
    font-family:游明朝体;
    font-size:30px;
    background-color:hsl(182deg 81% 76%);
    z-index:1;
    width:100%;
-   height:10%;
+   height:20%;
    float:right;
    margin-right:3%;
  }
@@ -106,9 +133,9 @@ data(){
    color:#fff;
    border-radius: 4px;
    font-size: 25px;
-   left:40%;
-   float:right;
-   margin-right:5%;
+   margin-top:10%;
+   margin-left:20%;
+   
  }
 
  .search{
@@ -124,6 +151,9 @@ data(){
  }
  .photoshow:after{
    background-color:#fff;
+ }
+ .photoshow a{
+   color:#fff;
  }
  .photoshow img{
    width:100%;
@@ -149,8 +179,8 @@ data(){
  }
  .select_title,::after{
    color:black;
-   top:55%;
-   position:relative;
+   top:50%;
+   position:absolute;
    font-size:20px;
    background-color:#f2f2f3;
    width:60%;
@@ -161,9 +191,7 @@ data(){
    font-size: .9rem;
     font-family: Avenir-Black,Arial,TazuganeGothicStdN-Bold,"游ゴシック体",YuGothic,"游ゴシック","Yu Gothic",sans-serif;
     font-weight: 700;
-    margin-bottom: 20px;
-    position:absolute;
-    
+    margin-bottom: 20px;  
  }
  select_title::after{
    backgroud-color:#f2f2f3;
@@ -178,5 +206,32 @@ data(){
    height:100%;
    border-radius:30px 30px 30px 30px;
  }
+ .fadein {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.fadeout {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.slideshow {
+  position: absolute;
+}
+.post {
+  color:#0095EE;
+  position:absolute;
+  top:82%;
+  left:65%;
+  z-index: 50;
+}
+@media screen and (max-width: 507px) {
+  .select_title{
+    top: 50%;
+    position:absolute;
+  }
+}
+
 
 </style>

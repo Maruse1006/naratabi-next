@@ -3,28 +3,28 @@
   <v-row justify="center">
   <div class="item">
   <div class="name">    
-      <div class="post_name" v-for="post in posts" ><p>{{post.name}}</p></div>
-      <div class="post_image" v-for="post in posts" >{{post.content}}<img v-bind:src="post.path" class="image" ></div>
+      <div class="post_name"><p>{{post.name}}</p></div>
+      <div class="post_image">{{post.content}}<img v-bind:src="post.path" class="image"></div>
   </div>
  
   <div class="open">
    <h1>営業時間</h1>
-   <div class="openning_hour" v-for="post in posts">{{post.openning_hour}}</div>  
+   <div class="openning_hour">{{post.openning_hour}}</div>  
   </div>
   <div class="address_box">
      <h2>住所</h2>
-     <div class="adress" v-for="post in posts">{{post.adress}}</div>
+     <div class="adress">{{post.adress}}</div>
   </div>   
   <div class="access_box">
    　<h3>アクセス</h3>
-     <div class="access" v-for="post in posts">{{post.access}}</div>
+     <div class="access">{{post.access}}</div>
   </div>
   <div class="official_url_box">
    　<h3>公式url</h3>
-       <a v-bind:href="post.official_url" class="image" >test</a>
+       <a :href="post.official_url" class="image">test</a>
   </div>
   <div class="googlemap_box">
-     <div class="access" v-for="post in posts"><iframe v-bind:src="post.googlemap"></iframe></div>
+     <div class="access"><iframe v-bind:src="post.googlemap"></iframe></div>
   </div>
  </div>
     
@@ -41,7 +41,7 @@ export default {
   created(){
   axios.get(`http://127.0.0.1:8000/api/category/post/${this.$route.params.id}`)
           .then(response => {
-          this.posts= response.data
+          this.post= response.data.post
           this.id = response.data.id
           this.name= response.data.name
           this.path = response.data.path
@@ -56,8 +56,7 @@ export default {
   data () {
     return {
      params:'',
-     posts:[],
-     post:[],
+     post:{},
      id:'',
      name:'',
      content:'',
