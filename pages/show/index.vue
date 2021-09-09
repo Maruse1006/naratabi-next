@@ -13,7 +13,8 @@
        <div class="wrapper">
        <div class="box"> 
         <div class="content">
-          <div v-for="image in images" class="flex"><img v-bind:src="image.path">{{image.title}}
+          <div v-for="image in images" class="flex"><img v-bind:src="image.path">
+          <a>{{image.title}}</a>
         </div>
         </div>
           </div>
@@ -77,15 +78,18 @@ h1{
 }
 .content a{
  flex-direction:column;
- 
 }
 
-.flex{
+.flex a{
   
   display:flex;
   flex-direction:column;
-  padding-left:8%;
+  
   border:1px solid transparent;
+}
+.flex{
+  width:25%;
+  padding-left:5%;
 }
 .flex img{
   width:120px;

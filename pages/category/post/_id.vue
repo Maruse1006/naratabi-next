@@ -21,7 +21,7 @@
   </div>
   <div class="official_url_box">
    　<h3>公式url</h3>
-       <a :href="post.official_url" class="image">test</a>
+       <a :href="post.official_url" target="_blank" rel="noopener"　class="image">{{post.official_url}}</a>
   </div>
   <div class="googlemap_box">
      <div class="access"><iframe v-bind:src="post.googlemap"></iframe></div>
@@ -87,8 +87,8 @@ export default {
   
  .post_name{
    left:3%;
-   top:7%;
-   width:60%;
+   top:8%;
+   width:54%;
    position:absolute;
    color:#696969;
    border-bottom: solid 2px orange;
@@ -108,8 +108,10 @@ export default {
    margin-right:10%;
  }
  .post_image img{
-   width:30%;
+   
    padding-left:20px;
+   width: 40%;
+   height: 40%;
  }
  .item{
    color:#696969;
@@ -142,6 +144,7 @@ h1{
   font-size:15px;
   font-family:serif;
   border-bottom: solid 2px orange;
+  width:95%;
 
 }
 .open{
@@ -159,7 +162,7 @@ h1{
   
 }
 h2{
-  width:100%;
+   width:95%;
    border-bottom: solid 2px orange;
    font-size:15px;
    font-family:serif;
@@ -173,7 +176,7 @@ h3{
   border-bottom: solid 2px orange;
   font-size:15px;
   font-family:serif;
-  width:100%;
+  width:95%;
 }
 .official_url_box{
   padding-left:30px;

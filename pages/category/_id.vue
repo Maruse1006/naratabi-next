@@ -3,7 +3,7 @@
   <v-row justify="center">
   <div class="list">
        <div class="title">
-         <h2>一覧結果</h2>
+         <h2>検索結果</h2>
        </div>
       <div class="wrapper">    
         <div class="name" > 
@@ -19,7 +19,7 @@
   </div> 
   <v-pagination
       v-model="page"
-      :length=7
+      :length="length"
       @input = "pageChange"
     ></v-pagination>   
   </v-row>
@@ -33,11 +33,11 @@ export default {
   axios.get(`http://127.0.0.1:8000/api/category/${this.$route.params.id}`)
           .then(response => {
           this.posts= response.data.posts
-         
           this.length = Math.ceil(this.posts.length/this.pageSize);
           this.id = response.data.id
           this.name= response.data.name
           this.path = response.data.path
+          this.post_category_name = response.data.post_category_name
           console.log(response.data)
           });
           
@@ -50,6 +50,7 @@ export default {
      id:'',
      name:'',
      content:'',
+     post_category_name:'',
      path:'',
      page:1,
      pageSize:6,

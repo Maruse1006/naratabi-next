@@ -1,4 +1,5 @@
 <template>
+ <div class="box">
     <main id="registrationForm">
         <h1>ログイン</h1>
         <label>ユーザー名</label><br>
@@ -7,6 +8,7 @@
         <input v-model="password"><br>
         <button @click="login">ログイン</button>
     </main>
+  </div>
 </template>
 
 <script>
@@ -62,3 +64,11 @@ export default {
     }
 }
 </script>
+<style scoped>
+.box{
+  color:#000;
+  background-color:#fff;
+  padding-top: 5%;
+  padding-left: 10%;
+}
+</style>

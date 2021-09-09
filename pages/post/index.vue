@@ -3,7 +3,6 @@
 <div>
   <img src="~/assets/image/shika.jpg">
   </div>
-  <EditArticle v-if="user.role && (user.type === 'admin' || post.owner === user.id )"></EditArticle>
   <li v-for="post in posts">
   {{post.name}}
     <button v-on:click="deleteItem(post.id)" class="btn btn-default" type="button">削除</button>
@@ -29,27 +28,7 @@ data(){
    isLoggedIn:'',
    }
 },
-//let user = methodToGetUser()
- 
-// user.role = 'admin'
-//can(post.role, 'create', 'article') // => true
- //const acl = {
-  //article: { // どれに
-  //  create: { // 何を
-    //   役割が
-  //    admin: true
-  //  }
- // }
-//},
-//const acl = {
-//  article: {
-//    edit: (user, article) => {
-   
-//      if (user.role === 'admin') return true
-     
-//    }
-//  }
-//},
+
 
  created(){
  
@@ -74,7 +53,7 @@ data(){
   editItem:function(id){
    axios.get(`http://127.0.0.1:8000/api/edit/${id}`)
    .then(response=>{
-       this.posts = response.data
+       this.posts = response.data.posts
        console.log(response.data)
       });
       this.$router.push({ path: `edit/${id}`});

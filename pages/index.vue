@@ -3,9 +3,13 @@
  <div class="title">
   <p>鹿と大仏だけじゃない奈良を知る</p>
  </div>
-    <div class="page_image" :key="idx" v-for="(image, idx) in images" v-if="current_slide == idx">
-  <img class="page_image" v-bind:src="images[idx].img" :key="images[idx].img" width="450" height="300">
+ <div class="slider_outer">
+   <transition name="fade">
+    <div class="slider-inner" :key="idx" v-for="(image, idx) in images" v-if="current_slide == idx">
+     <img class="slider-inner" v-bind:src="images[idx].img" :key="images[idx].img" width="450" height="300">
     </div>
+   </transition>
+  </div>
   <div class="category_search_form">
    <div class="select_title">
        <p>下記ボタンをクリックして検索しよう</p>
@@ -18,19 +22,18 @@
        </select>
       </div>  
   </div>  
-        <div class="aaa">
-         奈良の写真を投稿できます
-        </div>
+     <div class="image_post">
         <div class="photoshow">
-        <NuxtLink to="/show">
-         <div class="post">
-         写真一覧をみる
-         </div>
+          <NuxtLink to="/show">
+           <div class="post">
+            写真一覧をみる
+           </div>
           </NuxtLink>
          <NuxtLink to="/form">
            <div class="photoshowtitle"><a>奈良の写真を投稿する！</a></div>
          </NuxtLink>
         </div>  
+      </div>
 </div>
 
 </template>
@@ -52,6 +55,7 @@ data(){
   images:[
    {img:'https://naratabi.s3.ap-northeast-1.amazonaws.com/images/shika.JPG'},
    {img:'https://naratabi.s3.ap-northeast-1.amazonaws.com/images/oomiwa.JPG'},
+   {img:'https://naratabi.s3.ap-northeast-1.amazonaws.com/images/BqWJ6Maew497TkYq1oBBkuibneoMO0ERGZWKXJtu.jpeg'},
    ],
    }
 },
@@ -109,12 +113,6 @@ data(){
  .title::after{
    background-color:#fff;
  }
- .page_image img{
- background: #f2f2f3;
- width: 100%;
- height: 90vh;
- position:relative;
- }
  .photoshowtitle{
    position:absolute;
    top:80%;
@@ -133,8 +131,8 @@ data(){
    color:#fff;
    border-radius: 4px;
    font-size: 25px;
-   margin-top:10%;
-   margin-left:20%;
+   margin-top:15%;
+   margin-left:35%;
    
  }
 
@@ -148,6 +146,8 @@ data(){
    left:20%;
    top:200%;
    background-color:#fff;
+   display:flex;
+   flex-direction:column;
  }
  .photoshow:after{
    background-color:#fff;
@@ -206,15 +206,7 @@ data(){
    height:100%;
    border-radius:30px 30px 30px 30px;
  }
- .fadein {
-  opacity: 1;
-  transition: opacity 0.5s;
-}
-
-.fadeout {
-  opacity: 0;
-  transition: opacity 0.5s;
-}
+ 
 
 .slideshow {
   position: absolute;
@@ -222,15 +214,34 @@ data(){
 .post {
   color:#0095EE;
   position:absolute;
-  top:82%;
-  left:65%;
+  top:88%;
+  left:44%;
   z-index: 50;
 }
-@media screen and (max-width: 507px) {
-  .select_title{
-    top: 50%;
-    position:absolute;
-  }
+
+
+.slider-outer{
+  position: relative;
+  width: 450px;
+  height: 300px;
+  overflow: hidden;
+  margin: 0 auto 20px;
+}
+.slider-inner{
+  position: absolute;
+  width: 100%;
+  height: 60vh;
+}
+.slide-img {
+  width: 450px;
+  height: 300px;
+  object-fit: cover;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: all 3s ease;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 
