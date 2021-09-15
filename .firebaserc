@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "naratabi-nuxt",
+    "production": "naratabi-nuxt"
+  },
+  "targets": {}
+}
