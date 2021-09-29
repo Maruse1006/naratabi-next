@@ -243,6 +243,9 @@ data(){
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
+@media screen and (max-width: 780px) {
+  p{ color: red; }
+}
 
 
 </style>
