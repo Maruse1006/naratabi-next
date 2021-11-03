@@ -70,4 +70,11 @@ export default {
   axios: {
     baseURL: 'http://127.0.0.1:8000/api'
   },
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL || 'ec2-54-199-154-70.ap-northeast-1.compute.amazonaws.com',
+    apiURL: process.env.API_URL || 'ec2-54-199-154-70.ap-northeast-1.compute.amazonaws.com',
+  },
+  privateRuntimeConfig: {
+    secret: process.env.SECRET_KEY,
+  }
 }
