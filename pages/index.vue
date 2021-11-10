@@ -71,13 +71,15 @@ data(){
    mounted() {
 　　setInterval(() => {
       this.current_slide = this.current_slide < this.images.length -1 ? this.current_slide +1 : 0
-    }, 6000)
+    }, 6000),
+     console.log(process.env.MESSAGE)
 },
   methods:{
  getCategories: function(){
- axios.get(`http://127.0.0.1:8000/api/category`)
+ this.$axios.$get(`/category`)
 .then(response => {
- this.categories = response.data.categories
+ console.log(response)
+ this.categories = response.categories
  console.log(response.data)
  });
  },

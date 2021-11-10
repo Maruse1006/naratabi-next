@@ -1,4 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
+require('dotenv').config()
+console.info('nuxt.config.js MESSAGE:', process.env.MESSAGE)
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -43,6 +45,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     "@nuxtjs/axios",
+    '@nuxtjs/dotenv',
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -68,13 +71,14 @@ export default {
   build: {
   },
   axios: {
-    baseURL: 'http://127.0.0.1:8000/api'
+  //  baseURL: 'http://127.0.0.1:8000/api'
+      baseURL: process.env.BASE_URL
   },
-  publicRuntimeConfig: {
-    baseURL: process.env.BASE_URL || 'ec2-54-199-154-70.ap-northeast-1.compute.amazonaws.com',
-    apiURL: process.env.API_URL || 'ec2-54-199-154-70.ap-northeast-1.compute.amazonaws.com',
-  },
-  privateRuntimeConfig: {
-    secret: process.env.SECRET_KEY,
-  }
+  // publicRuntimeConfig: {
+  //   baseURL: process.env.BASE_URL || 'http://locahost:3000',
+  //   apiURL: process.env.API_URL || 'http://localhost:3333',
+  // },
+  // privateRuntimeConfig: {
+  //   secret: process.env.SECRET_KEY,
+  // }
 }
