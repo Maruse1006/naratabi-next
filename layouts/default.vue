@@ -35,7 +35,7 @@
         @click.stop="miniVariant = !miniVariant"
       >
       </v-btn>
-        <v-icon>mdi-application</v-icon>
+       
       </v-btn>
       
         <v-icon>mdi-minus</v-icon>
@@ -43,7 +43,6 @@
       <v-toolbar-title v-text="title" />
       <v-spacer />
       
-        <v-icon>mdi-menu</v-icon>
       </v-btn>
     </v-app-bar>s
     

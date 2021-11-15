@@ -72,14 +72,14 @@ data(){
 　　setInterval(() => {
       this.current_slide = this.current_slide < this.images.length -1 ? this.current_slide +1 : 0
     }, 6000),
-     console.log(process.env.MESSAGE)
+      console.info('this.$axios.defaults.baseURL:', this.$axios.defaults.baseURL)
 },
   methods:{
  getCategories: function(){
  this.$axios.$get(`/category`)
 .then(response => {
  console.log(response)
- this.categories = response.categories
+ this.categories = response.catagories
  console.log(response.data)
  });
  },

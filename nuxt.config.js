@@ -1,6 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
-require('dotenv').config()
-console.info('nuxt.config.js MESSAGE:', process.env.MESSAGE)
+const envPath = `.env.${process.env.ENV || 'local'}`
+require('dotenv').config({ path: envPath })
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -46,7 +46,15 @@ export default {
   modules: [
     "@nuxtjs/axios",
     '@nuxtjs/dotenv',
+   
   ],
+  dotenv: {
+    filename: envPath
+  },
+  env: {
+    // これを設定しないとNuxtでprocess.env.NODE_ENVを取得したときにデフォルトの値になってしまう
+    NODE_ENV: process.env.NODE_ENV
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -71,7 +79,7 @@ export default {
   build: {
   },
   axios: {
-  //  baseURL: 'http://127.0.0.1:8000/api'
+    //  baseURL: 'http://127.0.0.1:8000/api'
       baseURL: process.env.BASE_URL
   },
   // publicRuntimeConfig: {
