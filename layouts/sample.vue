@@ -1,8 +1,6 @@
 <template>
   <div>
-    <ex-header />
-    <nuxt />
-    <ex-footer />
+    aaaaaaa
   </div>
 </template>
 
@@ -17,4 +15,8 @@ export default {
    
   }
 }
-</script>
+<style lang="scss">
+body {
+  background-color:wheat;
+}
+</style>

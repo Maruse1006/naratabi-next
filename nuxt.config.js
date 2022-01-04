@@ -46,7 +46,7 @@ export default {
   modules: [
     "@nuxtjs/axios",
     '@nuxtjs/dotenv',
-   
+    '@nuxtjs/auth'
   ],
   dotenv: {
     filename: envPath
@@ -81,6 +81,23 @@ export default {
   axios: {
     //  baseURL: 'http://127.0.0.1:8000/api'
       baseURL: process.env.BASE_URL
+  },
+  auth: {
+    redirect: {
+      login: '/login',   // 未ログイン時に認証ルートへアクセスした際のリダイレクトURL
+      logout: '/login',  // ログアウト時のリダイレクトURL
+      callback: false,   // Oauth認証等で必要となる コールバックルート
+      home: '/',         // ログイン後のリダイレクトURL
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: 'api/login', method: 'post', propertyName: 'token' },
+          user: { url: 'api/me', method: 'get', propertyName: false},
+          logout: false
+        },
+      }
+    }
   },
   // publicRuntimeConfig: {
   //   baseURL: process.env.BASE_URL || 'http://locahost:3000',

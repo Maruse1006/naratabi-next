@@ -104,8 +104,8 @@ export default {
   background-color:#fff;
  
 }
-v-footer{
-  position:absolute;
+.v-footer{
+  position:relative;
   bottom:0;
   margin:0%;
   padding:0%;

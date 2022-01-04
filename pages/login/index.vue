@@ -1,73 +1,59 @@
 <template>
- <div class="box">
-    <main id="registrationForm">
-        <h1>ログイン</h1>
-        <label>ユーザー名</label><br>
-        <input v-model="name"><br>
-        <label>パスワード</label><br>
-        <input v-model="password"><br>
-        <button @click="login">ログイン</button>
-    </main>
+  <div class="box">
+    <form @submit.prevent="loginUser">
+      <h1>ログイン</h1>
+      <label>ユーザー名</label><br />
+      <input v-model="form.name" /><br />
+      <label>パスワード</label><br />
+      <input v-model="form.password" /><br />
+      <button type="submit">ログイン</button>
+    </form>
   </div>
 </template>
-
 <script>
-import loginRepository from '../../repositories/LoginRepository' //①API
+import { Service } from "axios-middleware";
+import axios from "axios";
+
+const service = new Service(axios);
+
+service.register({
+  onRequest(config) {
+    if (typeof config.auth == "string") {
+      config.headers["Authorization"] = `Bearer ${config.auth}`;
+      delete config.auth;
+    }
+    return config;
+  }
+});
 
 export default {
-  data () {
-    return {
-      name: 'aaa1006@.gmail',
-      password: 'ivu1006',
+  middleware({ store, redirect }) {
+    if (store.$auth.loggedIn) {
+      redirect("/");
     }
   },
-  methods:{
-     getHeaders(token) {
-     return `Bearer ${token}`
-   },
-     async login(){
-      // v-modelで、ユーザー名と、パスワードを取得する。
-      const params = {
-        username: this.name,
-        password: this.password,
+  data() {
+    return {
+      form: {
+        name: "",
+        email: "",
+        password: ""
       }
-      
-      const acl = {
-  article: {
-    list: (user) => {
-      if (!user.isLoggedIn) return false
-      return true
-    },
-    create: (user) => {
-      if (!user.isLoggedIn) return false
-      if (user.role === 'readonly') return false
-      return true
-    },
-    edit: (user, article) => {
-      if (!user.isLoggedIn) return false
-      if (user.role === 'admin') return true
+    };
+  },
+  methods: {
+    loginUser() {
+      this.$auth.loginWith("local", {
+        data: this.form
+      });
     }
   }
-}
-
-      const response = await loginRepository.login(params) //★処理をまとめる。
-
-      const accessToken = this.getHeaders(response.data.access_token)
-
-      //クッキーへ保存
-      document.cookie = `access_token=${accessToken}`
-
-      const token=`Bearer ${document.cookie.replace(/(?:(?:^|.*;\s*)access_token\s*\=\s*([^;]*).*$)|^.*$/, "$1")}`
-      console.log(token);
-        this.$router.push('/category')
-       }
-    }
-}
+};
 </script>
 <style scoped>
-.box{
-  color:#000;
-  background-color:#fff;
+.box {
+  color: #000;
+  background-color: #fff;
   padding-top: 5%;
   padding-left: 10%;
 }

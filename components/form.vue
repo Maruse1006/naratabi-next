@@ -1,24 +1,15 @@
 <template>
-  <div class="header">
-    <ul class="menu">
-      <li>メニュー</li>
-    </ul>
-  </div>
+ 
+  <body>
+  </body>  
+  
 </template>
 
-<style>
-.menu {
-  list-style: none;
-  padding: 0;
-  background-color: #EEE;
-}
-.menu li {
-  display: inline-block;
-  padding: 5px;
-}
-.v-application {
-  background-color: #FFF;
-  
+<style　scoped>
+body{
+  padding-top:30px;
+  background-color:wheat;
+  height:100vh;
 }
 
 </style>
