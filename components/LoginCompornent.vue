@@ -19,13 +19,12 @@ export default {
   methods: {
     login: function() {
       axios
-        .post("/api/logimm", {
-          username: this.email,
+        .post("/api/login", {
+          username: this.name,
           password: this.password
         })
         .then(res => {
-          console.log(res);
-　        //うまくいったらログイン後の画面にpushする
+          console.log(res); //うまくいったらログイン後の画面にpushする
         })
         .catch(err => console.log(err));
     }

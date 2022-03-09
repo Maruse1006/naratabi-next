@@ -53,13 +53,14 @@
     <div id="app">
     
 </div>
-    
+    <div class="footer-position">
     <v-footer
       :absolute="!fixed"
       app
     >
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
+    </div>
   </v-app>
 </template>
 
@@ -83,7 +84,7 @@ export default {
         {
           icon: 'mdi-chart-bubble',
           title: 'ログアウト',
-          to:'/login'
+          to:'/dashboard'
         },
         {
           icon: 'mdi-chart-bubble',
@@ -105,7 +106,7 @@ export default {
  
 }
 .v-footer{
-  position:relative;
+  position:absolute;
   bottom:0;
   margin:0%;
   padding:0%;
@@ -118,5 +119,9 @@ export default {
 .container{
   padding:0;
   margin:0;
+}
+.footer-position{
+position:absolute;
+bottom:100px;
 }
 </style>

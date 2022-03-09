@@ -2,6 +2,7 @@
   <v-row justify="center">
     <div class="item">
       <div class="name">
+        <nuxt-link :to="`post/${post.id}`"> レビュー一覧へ</nuxt-link>
         <div class="post_name">
           <p>{{ post.name }}</p>
         </div>
@@ -35,30 +36,40 @@
       <div class="googlemap_box">
         <div class="access"><iframe v-bind:src="post.googlemap"></iframe></div>
       </div>
-      <v-btn @click="open">レビュー投稿</v-btn>
+      <div class="button">
+        <v-btn @click="open">レビュー投稿</v-btn>
+      </div>
       <div class="dialog">
         <v-dialog v-model="dialog">
           <button type="button" class="close" data-dismiss="modal">
             <span aria-hidden="true">&times;</span>
           </button>
 
-          <div class="modal-body">
+          <div class="modal-body" style="background:white;color: #222222;">
             <div class="form-group"></div>
             <div class="form-group">
               <h4>コメント</h4>
-              <textarea
-                class="form-control"
-                v-model="reviewParams.comment"
-              ></textarea>
+              <div class="comment_box">
+                <textarea
+                  class="form-control"
+                  v-model="reviewParams.comment"
+                ></textarea>
+              </div>
+              <v-rating
+                v-model="reviewParams.stars"
+                background-color="purple lighten-3"
+                color="purple"
+                large
+              ></v-rating>
             </div>
-          </div>
 
-          <button type="button" class="btn btn-link mr-2" data-dismiss="modal">
-            閉じる
-          </button>
-          <button type="button" class="btn btn-warning" @click="onSubmit">
-            登録する
-          </button>
+            <button type="button" class="btn btn-link mr-2" @click="close">
+              閉じる
+            </button>
+            <button type="button" class="btn btn-warning" @click="onSubmit">
+              登録する
+            </button>
+          </div>
         </v-dialog>
       </div>
     </div>
@@ -89,7 +100,7 @@ export default {
   },
   data() {
     return {
-      userId: parseInt("{{ auth()->user()->id ?? -1 }}"),
+      user_id: parseInt("{{ auth()->user()->id ?? -1 }}"),
       params: "",
       post: [],
       id: "",
@@ -106,9 +117,11 @@ export default {
       star: "",
       comment: "",
       dialog: "",
+      rating: "",
       reviewParams: {
-        post_id: "",
+        post_id: `${this.$route.params.id}`,
         stars: "",
+        rating: "",
         comment: "",
         post: ""
       }
@@ -127,7 +140,7 @@ export default {
         .post(`http://127.0.0.1:8000/api/review`, this.reviewParams)
         .then(response => {
           if (response.data.result === true) {
-            this.getProducts();
+            getPosts();
             $("#review-modal").modal("hide");
           }
         });
@@ -138,12 +151,17 @@ export default {
       // 逆にfalseにすれば閉じるを実装できる
     },
 
+    close: function() {
+      this.dialog = false;
+    },
+
     openReviewForm(postId) {
       this.reviewParams = {
-        post_id: postId,
+        post_id: "",
         stars: "",
         comment: "",
-        post: ""
+        post: "",
+        user_id: ""
       };
     }
     //   hasMyReview(reviews) { // すでに投稿済みかどうかのチェック ・・・ ⑥
@@ -170,6 +188,7 @@ export default {
 .post_name {
   left: 3%;
   top: 8%;
+  margin-bottom: 10%;
   width: 54%;
   position: absolute;
   color: #696969;
@@ -188,7 +207,7 @@ export default {
 .post_image {
   display: flex;
   color: #696969;
-  padding-top: 10%;
+  padding-top: 20%;
   padding-left: 30px;
   margin-right: 10%;
 }
@@ -280,5 +299,47 @@ h5 {
 }
 .dialog {
   color: white;
+  background-color: white;
+}
+.button {
+  width: 30px;
+  margin: 0 auto;
+  padding-top: 10%;
+  padding-right: 10%;
+}
+.modal-body {
+  background-color: white;
+  color: black;
+  text-align: center;
+  height: 200px;
+}
+.rate-form {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.rate-form input[type="radio"] {
+  display: none;
+}
+.rate-form label {
+  position: relative;
+  padding: 0 5px;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 35px;
+}
+.rate-form label:hover {
+  color: #ffcc00;
+}
+.rate-form label:hover ~ label {
+  color: #ffcc00;
+}
+.rate-form input[type="radio"]:checked ~ label {
+  color: #ffcc00;
+}
+.form-control {
+  border-radius: 10px;
+  border: 1px solid #333;
+  height: 30%;
 }
 </style>

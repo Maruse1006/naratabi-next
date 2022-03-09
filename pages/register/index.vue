@@ -1,60 +1,55 @@
-<template lang="html">
-    <div class="container">
-        <div v-if="saved" class="alert alert-primary" role="alert">
-        保存しました
-
-        </div>
-        <form>
-         
-            <div class="form-group">
-                <label for="TopicTitle">名前</label>
-                <input type="text" class="form-control" id="TopicTitle" v-model="id">
-                
-            </div>
-            <div class="form-group">
-                <label for="TopicContent">メールアドレス</label>
-                <textarea class="form-control" id="TopicContent" rows="3" v-model="email"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary" @click.prevent="create">登録</button>
-         </form>
-       </div>
+<template>
+  <div class="aaa">
+    <form @submit.prevent="register">
+      <a>ユーザー名</a>
+      <input type="text" v-model="name" placeholder="name" required />
+      <a>email</a>
+      <input type="email" v-model="email" placeholder="email" required />
+      <a>パスワード</a>
+      <input
+        type="password"
+        v-model="password"
+        placeholder="password"
+        required
+      />
+      <button type="submit">送信</button>
+    </form>
   </div>
-    </div>
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
-    layout:'register'
-    data: function() 
-        return {
-           name:'',
-           email:'',
-           saved:'',       
-    },
-    methods: {
-        create : function() {
-            axios.post('http://127.0.0.1:8000/api/register_post', {
-                name: this.name,
-                email: this.email,
-            })
-            .then((res) => {
-                console.log(res)
-                this.name = '';
-                this.email = '';
-                this.save = true;
-                console.log('created');
-            });
-        }
-    },
-    <style scoped>
-    .container{
-        background-color:wha
+  auth: false,
+  data() {
+    return {
+      name: "aaa",
+      email: "ggg@i.com",
+      password: "maaru1006"
+    };
+  },
+  methods: {
+    async register() {
+      try {
+        await this.$axios.post("http://localhost:8000/api/register", {
+          name: this.name,
+          email: this.email,
+          password: this.password
+        });
+        this.$router.push("/login");
+      } catch {
+        alert("e");
+      }
     }
-    .body-style{
-        background-color:wheat;
-    }
-    </style>
+  }
+};
+</script>
+<style scoped>
+.aaa {
+  //background-color: black;
+  color: black;
+  padding-top: 50px;
+  display: flex;
+  width: 20%;
+  margin: 0 auto;
 }
-}
+</style>

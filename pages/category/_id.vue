@@ -19,7 +19,6 @@
           </div>
         </div>
       </div>
-
       <v-pagination
         v-model="page"
         :length="length"
@@ -57,7 +56,7 @@ export default {
       path: "",
       page: 1,
       pageSize: 6,
-      length: ""
+      length: "0"
     };
   },
   computed: {
@@ -82,61 +81,114 @@ export default {
 };
 </script>
 <style scoped>
-.container {
-  background-color: #fff;
-  height: 120vh;
-  width: 100%;
-}
-.list {
-  text-align: left;
-  padding-top: 10%;
-}
-.title {
-  color: #000;
-  text-align: center;
-}
+@media screen and (min-width: 700px) {
+  /*　画面サイズが480pxからはここを読み込む　*/
+  .container {
+    background-color: #fff;
+    height: 120vh;
+    width: 100%;
+  }
+  .list {
+    text-align: left;
+    padding-top: 10%;
+  }
+  .title {
+    color: #000;
+    text-align: center;
+  }
 
-.post_name {
-  top: 10%;
-  width: 20%;
-  display: flex;
-  float: left;
-  margin: 0 5%;
-}
+  .post_name {
+    top: 10%;
+    width: 20%;
+    display: flex;
+    float: left;
+    margin: 0 5%;
+  }
 
-.name {
-  width: 50%;
-  height: 50%;
-  padding-left: 20px;
-}
-.name img {
-  position: relative;
-  top: 0%;
-  left: 3%;
-  width: 100%;
-}
-.wrapper {
-  width: 200%;
-}
+  .name {
+    width: 50%;
+    height: 50%;
+    padding-left: 20px;
+  }
+  .name img {
+    position: relative;
+    top: 0%;
+    left: 3%;
+    width: 100%;
+  }
+  .wrapper {
+    width: 200%;
+  }
 
-body {
-  background-color: #0f0;
+  body {
+    background-color: #0f0;
+  }
+  .box a {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10%;
+  }
+  .box {
+    margin: 0 auto;
+  }
+  .content2 {
+    color: #000;
+  }
 }
-.box a {
-  display: flex;
-  flex-direction: column;
-  padding-top: 10%;
-}
-.box {
-  margin: 0 auto;
-}
-.content2 {
-  color: #000;
-}
-.model-title {
-  color: black;
-}
-.review {
-  color: black;
+@media screen and (max-width: 699px) {
+  .container {
+    background-color: #fff;
+    height: 200vh;
+    width: 100%;
+  }
+  .list {
+    text-align: center;
+    padding-top: 10%;
+  }
+  .title {
+    color: #000;
+    text-align: center;
+  }
+
+  .post_name {
+    top: 10%;
+    width: 50%;
+    height: 30%;
+    display: flex;
+    float: left;
+    margin: 0 5%;
+    margin: 0 auto;
+    padding: 10%;
+  }
+
+  .name {
+    width: 50%;
+    height: 50%;
+    padding-left: 20px;
+  }
+  .name img {
+    position: relative;
+    top: 0%;
+    left: 3%;
+    width: 100%;
+  }
+  .wrapper {
+    width: 200%;
+  }
+
+  body {
+    background-color: #0f0;
+  }
+  .box a {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10%;
+  }
+  .box {
+    margin: 0 auto;
+  }
+  .content2 {
+    color: #000;
+  }
 }
 </style>

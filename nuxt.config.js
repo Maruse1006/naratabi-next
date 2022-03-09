@@ -30,6 +30,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '@/plugins/axios',
+    //'@/plugins/axios/index'
     
   ],
 
@@ -77,6 +79,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    
+  },
+  router: {
+    middleware: ['auth']
   },
   axios: {
     //  baseURL: 'http://127.0.0.1:8000/api'
@@ -93,8 +99,9 @@ export default {
       local: {
         endpoints: {
           login: { url: 'api/login', method: 'post', propertyName: 'token' },
-          user: { url: 'api/me', method: 'get', propertyName: false},
-          logout: false
+          user: { url: 'api/user', method: 'get', propertyName: false},
+          logout: {url: "api/logout",
+          method: "post"}
         },
       }
     }
