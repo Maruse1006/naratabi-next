@@ -15,7 +15,14 @@
           <div v-for="image in images" class="flex">
             <img v-bind:src="image.path" />
             <a>{{ image.title }}</a>
+             <button @click="unfavorite(image.id)">
+                        いいね解除
+                    </button>
+                    <button @click="favorite(image.id)">
+                        いいね
+                    </button>
           </div>
+          
         </div>
       </div>
     </div>
@@ -38,7 +45,24 @@ export default {
     this.getCategories();
   },
   methods: {
+    favorite() {
+                axios.post(`http://127.0.0.1:8000/api/like/{imageid}`)
+                .then(res => {
+                    this.count = res.data.count;
+                }).catch(function(error) {
+                    console.log(error);
+                });
+            },
+            
+            unfavorite() {
+                axios.post(`http://127.0.0.1:8000/api/unlike/{imageid}`)
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
     getCategories: function() {
+
+      
       axios.get(`http://127.0.0.1:8000/api/show`).then(response => {
         this.images = response.data.images;
         this.path = response.data.path;

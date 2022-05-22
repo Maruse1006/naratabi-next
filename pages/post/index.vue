@@ -1,16 +1,4 @@
-<template>
-<body>
-<div>
-  <img src="~/assets/image/shika.jpg">
-  </div>
-  <li v-for="post in posts">
-  {{post.name}}
-    <button v-on:click="deleteItem(post.id)" class="btn btn-default" type="button">削除</button>
-    <button v-on:click="editItem(post.id)" class="btn btn-default" type="button">編集</button>
-  </li>
-</div>
-</body>
-</template>
+
 
 <script>
 import axios from 'axios';

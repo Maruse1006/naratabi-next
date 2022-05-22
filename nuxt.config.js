@@ -32,6 +32,7 @@ export default {
   plugins: [
     '@/plugins/axios',
     //'@/plugins/axios/index'
+    { src: '~/plugins/vue-awesome-swiper.js', ssr: false }
     
   ],
 
@@ -97,7 +98,10 @@ export default {
     },
     strategies: {
       local: {
-        endpoints: {
+        token:{
+          type:'Bearer'
+        },
+        endpoints: {    
           login: { url: 'api/login', method: 'post', propertyName: 'token' },
           user: { url: 'api/user', method: 'get', propertyName: false},
           logout: {url: "api/logout",

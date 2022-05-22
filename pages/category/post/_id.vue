@@ -7,8 +7,55 @@
           <p>{{ post.name }}</p>
         </div>
         <div class="post_image">
-          {{ post.content }}<img v-bind:src="post.path" class="image" />
-        </div>
+          <div class="content">
+           {{ post.content }}
+          </div>
+             <!-- <v-carousel v-for ="item in items">
+                  <img v-bind:src="post.path" class="image" />
+                  <img v-bind:src="post.path2" class="image" />
+             </v-carousel>  -->
+
+　　　　　
+             <!-- <v-carousel v-for ="item in items" height="300" width="100">
+                  <img v-bind:src="post.path" class="image" height="300" width="100" />
+                  <img v-bind:src="post.path2" class="image" />
+             </v-carousel>  -->
+             <v-carousel :show-arrows="false" height="200px" width="100px" class="image">
+                  <v-carousel-item
+                  :src="post.path" class="image"
+                  ></v-carousel-item>
+                  <v-carousel-item
+                    :src="post.path2" class="image"
+                  ></v-carousel-item>
+              </v-carousel>
+</div> 
+        <!-- <div id="carousel-2" class="carousel slide" data-interval="10000">
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-2" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-2" data-slide-to="1"></li>
+    <li data-target="#carousel-2" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img v-bind:src="post.path" class="image" />
+    </div>
+    <div class="carousel-item">
+       <img v-bind:src="post.path2" class="image" />
+    </div>
+    
+  </div>
+  <a class="carousel-control-prev" href="#carousel-2" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carousel-2" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div> -->
+
+        
+
       </div>
 
       <div class="open">
@@ -80,6 +127,8 @@
 //import VueAwesomeSwiper from 'vue-awesome-swiper'
 //import 'swiper/dist/css/swiper.css'
 import axios from "axios";
+import FirstChild from '@/components/FirstChild.vue';
+
 export default {
   created() {
     axios
@@ -107,6 +156,7 @@ export default {
       name: "",
       content: "",
       path: "",
+      path2:"",
       opening_hour: "",
       adress: "",
       official_url: "",
@@ -118,12 +168,19 @@ export default {
       comment: "",
       dialog: "",
       rating: "",
+      items: [
+       { path:""
+       },
+        {path2:"" 
+        }
+      ],
       reviewParams: {
-        post_id: `${this.$route.params.id}`,
+        post_id:"",
         stars: "",
         rating: "",
         comment: "",
         post: ""
+        
       }
     };
   },
@@ -288,8 +345,9 @@ h3 {
 .item {
   left: 5%;
 }
-.img {
+.image img {
   color: #696969;
+  width:40px;
 }
 .googlemap_box {
   text-align: center;
@@ -342,4 +400,20 @@ h5 {
   border: 1px solid #333;
   height: 30%;
 }
+.carousel-inner{
+  width:100px;
+  text-align:center;
+  padding:30px;
+}
+.carousel-item img{
+  width:100px;
+  text-align:center;
+}
+.image { 
+  width:400px;
+} 
+.content{
+  width:500px;
+}
+
 </style>
