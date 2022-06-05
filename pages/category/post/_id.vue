@@ -221,16 +221,7 @@ export default {
         user_id: ""
       };
     }
-    //   hasMyReview(reviews) { // すでに投稿済みかどうかのチェック ・・・ ⑥
-
-    //       for(let review of reviews) {
-
-    //           if(this.userId === parseInt(review.user_id)) {
-    //              return true;
-    //           }
-    //       }
-    //       return false;
-    //  },
+    
   }
 };
 </script>
