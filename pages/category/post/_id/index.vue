@@ -2,7 +2,9 @@
   <v-row justify="center">
     <div class="item">
       <div class="name">
-        <nuxt-link :to="`post/${post.id}`"> レビュー一覧へ</nuxt-link>
+        <div class="review">
+         <nuxt-link :to="`../post/review/${post.id}`"> レビュー一覧へ</nuxt-link>
+        </div>
         <div class="post_name">
           <p>{{ post.name }}</p>
         </div>
@@ -86,6 +88,7 @@
       <div class="button">
         <v-btn @click="open">レビュー投稿</v-btn>
       </div>
+      
       <div class="dialog">
         <v-dialog v-model="dialog">
           <button type="button" class="close" data-dismiss="modal">
@@ -117,6 +120,7 @@
               登録する
             </button>
           </div>
+          
         </v-dialog>
       </div>
     </div>
@@ -127,7 +131,7 @@
 //import VueAwesomeSwiper from 'vue-awesome-swiper'
 //import 'swiper/dist/css/swiper.css'
 import axios from "axios";
-import FirstChild from '@/components/FirstChild.vue';
+import FirstChild from '/components/FirstChild.vue';
 
 export default {
   created() {
@@ -192,7 +196,7 @@ export default {
       this.$router.push({ path: `/${id}` });
       console.log(id);
     },
-    onSubmit(postId) {
+    onSubmit() {
       axios
         .post(`http://127.0.0.1:8000/api/review`, this.reviewParams)
         .then(response => {
@@ -212,7 +216,7 @@ export default {
       this.dialog = false;
     },
 
-    openReviewForm(postId) {
+    openReviewForm() {
       this.reviewParams = {
         post_id: "",
         stars: "",
@@ -226,6 +230,14 @@ export default {
 };
 </script>
 <style scoped>
+.review{
+  color:black;
+  position:absolute;
+  top:30%;
+}
+.item{
+  height:200vh;
+}
 .title {
   text-align: left;
 }
@@ -333,6 +345,9 @@ h3 {
   left: 5%;
   width: 100%;
 }
+.name{
+  color:black;
+}
 .item {
   left: 5%;
 }
@@ -355,6 +370,10 @@ h5 {
   margin: 0 auto;
   padding-top: 10%;
   padding-right: 10%;
+}
+.button1{
+  position:abolute;
+  width:30px;
 }
 .modal-body {
   background-color: white;

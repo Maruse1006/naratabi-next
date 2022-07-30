@@ -1,7 +1,6 @@
 <template>
  
-  <body>
-  </body>  
+  
   
 </template>
 

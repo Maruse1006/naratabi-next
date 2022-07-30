@@ -1,3 +1,4 @@
+import * as FontAwesome from './build/fontawesome'
 import colors from 'vuetify/es5/util/colors'
 const envPath = `.env.${process.env.ENV || 'local'}`
 require('dotenv').config({ path: envPath })
@@ -43,13 +44,31 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    ['@nuxtjs/fontawesome',{ component: 'fontAwesome', suffix: true }]
   ],
+  link: [
+    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap' },
+    { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.6.1/css/all.css'}
+  ],
+  fontawesome:{
+//     component:'fas',
+// 　　　　solid:['heart'],
+//        brands:true,
+       icons: {
+       solid: FontAwesome.solid,
+       regular: FontAwesome.regular,
+       brands: FontAwesome.brands
+}
+  },
+  
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     "@nuxtjs/axios",
     '@nuxtjs/dotenv',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    
+    
   ],
   dotenv: {
     filename: envPath
@@ -118,3 +137,4 @@ export default {
   //   secret: process.env.SECRET_KEY,
   // }
 }
+
