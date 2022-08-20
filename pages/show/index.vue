@@ -11,7 +11,7 @@
   　<vue-star animate="animated bounceIn" color="#222222">
     <i slot="icon" class="fa fa-heart"></i>
   　</vue-star>
-
+    
     <div class="wrapper">
       <div class="box">
         <div class="content">
@@ -51,7 +51,8 @@ export default {
       customizedClass: "hoge",
       buttonstate:false,
       count:"",
-      like_count:""
+      like_count:"",
+      loggedIn:false
     };
   },
   created() {
@@ -73,16 +74,32 @@ export default {
             },  
       
     getCategories: function() {
-      axios.get(`http://127.0.0.1:8000/api/show`).then(response => {
+      
+      // axios.get(`http://127.0.0.1:8000/api/show`).then(response => {
+      //   this.images = response.data.images;
+      //   this.path = response.data.path;
+      // //  this.user=response.data.user;
+      //  // this.image.likes_count = response.data.image.likes_count;
+      //   console.log(response.data.images);
+      // });
+    
+    var url;
+     if(this.$auth.loggedIn){
+     url = 'http://127.0.0.1:8000/api/show'
+     } else {
+     url = 'http://127.0.0.1:8000/api/show/show'
+     }
+     axios.get(url).then(response => {
         this.images = response.data.images;
         this.path = response.data.path;
-        this.user=response.data.user;
+      //  this.user=response.data.user;
        // this.image.likes_count = response.data.image.likes_count;
-        console.log(response.data.images);
+        console.log(this.loggedIn);
       });
-    }
   }
-};
+  }
+  };
+
 </script>
 
 <style scoped>

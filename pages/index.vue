@@ -39,11 +39,12 @@
     </div>
     <div class="image_post">
       <div class="photoshow">
+        　<div class="post">
         <NuxtLink to="/show">
-          <div class="post">
-            写真一覧をみる
+        　写真 
+        </NuxtLink>       
           </div>
-        </NuxtLink>
+       
         <NuxtLink to="/form">
           <div class="photoshowtitle"><a>奈良の写真を投稿する！</a></div>
         </NuxtLink>
@@ -63,6 +64,7 @@ export default {
       category: [],
       post: [],
       id: "",
+      user:"",
       name: "",
       current_slide: 0,
       images: "",
@@ -112,6 +114,15 @@ export default {
       this.$router.push({ path: `category/${id}` });
       console.log(id);
     },
+    //  move(){
+    //    if(this.user){
+    //   this.$router.push('./show');
+     
+    //    }else{
+    //   this.$router.push('./show/show');
+    //    }
+    //     console.log(user);
+    // },
     slideshow(images) {
       const current = images[this.index];
       const prev = images[this.index - 1]

@@ -2,8 +2,7 @@
 
  <button @click="favorite(id)" v-bind:class="{buttoncolor:buttonstate}" 
             value="&#xf164;いいね"  >
-               <font-awesome-icon :icon="['far', 'heart']" class="font-awesome-size-solid" />  
-                          　
+               <font-awesome-icon :icon="['far', 'heart']" class="font-awesome-size-solid" />              　
             </button>       
 </template>
 <script>

@@ -102,7 +102,7 @@ export default {
     
   },
   router: {
-    middleware: ['auth']
+    //middleware: ['auth']
   },
   axios: {
     //  baseURL: 'http://127.0.0.1:8000/api'

@@ -53,9 +53,9 @@ export default {
   data() {
     return {
       form: {
-        email: "cccc@i.com",
+        email: "abcd@i.com",
         // email: "aaa1006@.gmail",
-        password: "cccc",
+        password: "abcd",
         Service: ""
       },
       show: true
