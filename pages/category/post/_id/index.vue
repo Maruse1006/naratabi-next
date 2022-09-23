@@ -2,62 +2,36 @@
   <v-row justify="center">
     <div class="item">
       <div class="name">
-        <div class="review">
-         <nuxt-link :to="`../post/review/${post.id}`"> レビュー一覧へ</nuxt-link>
-        </div>
         <div class="post_name">
           <p>{{ post.name }}</p>
         </div>
         <div class="post_image">
           <div class="content">
-           {{ post.content }}
+            {{ post.content }}
           </div>
-             <!-- <v-carousel v-for ="item in items">
-                  <img v-bind:src="post.path" class="image" />
-                  <img v-bind:src="post.path2" class="image" />
-             </v-carousel>  -->
-
-　　　　　
-             <!-- <v-carousel v-for ="item in items" height="300" width="100">
-                  <img v-bind:src="post.path" class="image" height="300" width="100" />
-                  <img v-bind:src="post.path2" class="image" />
-             </v-carousel>  -->
-             <v-carousel :show-arrows="false" height="200px" width="100px" class="image">
-                  <v-carousel-item
-                  :src="post.path" class="image"
-                  ></v-carousel-item>
-                  <v-carousel-item
-                    :src="post.path2" class="image"
-                  ></v-carousel-item>
-              </v-carousel>
-</div> 
-        <!-- <div id="carousel-2" class="carousel slide" data-interval="10000">
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-2" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-2" data-slide-to="1"></li>
-    <li data-target="#carousel-2" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img v-bind:src="post.path" class="image" />
-    </div>
-    <div class="carousel-item">
-       <img v-bind:src="post.path2" class="image" />
-    </div>
-    
-  </div>
-  <a class="carousel-control-prev" href="#carousel-2" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carousel-2" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div> -->
-
-        
-
+          <v-carousel
+            :show-arrows="false"
+            height="200px"
+            width="100px"
+            class="image"
+          >
+            <v-carousel-item
+              :src="post.path"
+              class="image"
+              @click="openModal(post.path)"
+            ></v-carousel-item>
+            <v-carousel-item
+              :src="post.path2"
+              class="image"
+              @click="openModal(post.path2)"
+            ></v-carousel-item>
+          </v-carousel>
+          <modal
+            :src="selectedImage"
+            v-show="showContent"
+            @close="closeModal"
+          />
+        </div>
       </div>
 
       <div class="open">
@@ -88,7 +62,9 @@
       <div class="button">
         <v-btn @click="open">レビュー投稿</v-btn>
       </div>
-      
+      <div class="review">
+        <nuxt-link :to="`../post/review/${post.id}`"> レビュー一覧へ</nuxt-link>
+      </div>
       <div class="dialog">
         <v-dialog v-model="dialog">
           <button type="button" class="close" data-dismiss="modal">
@@ -120,7 +96,6 @@
               登録する
             </button>
           </div>
-          
         </v-dialog>
       </div>
     </div>
@@ -131,9 +106,13 @@
 //import VueAwesomeSwiper from 'vue-awesome-swiper'
 //import 'swiper/dist/css/swiper.css'
 import axios from "axios";
-import FirstChild from '/components/FirstChild.vue';
+import Modal from "~/components/Modal.vue";
+import FirstChild from "@/components/FirstChild.vue";
 
 export default {
+  components: {
+    Modal
+  },
   created() {
     axios
       .get(`http://127.0.0.1:8000/api/category/post/${this.$route.params.id}`)
@@ -158,9 +137,10 @@ export default {
       post: [],
       id: "",
       name: "",
+      // item:"",
       content: "",
       path: "",
-      path2:"",
+      path2: "",
       opening_hour: "",
       adress: "",
       official_url: "",
@@ -172,20 +152,17 @@ export default {
       comment: "",
       dialog: "",
       rating: "",
-      items: [
-       { path:""
-       },
-        {path2:"" 
-        }
-      ],
+      items: [{ path: "" }, { path2: "" }],
+      selectedImage: "",
       reviewParams: {
-        post_id:"",
+        post_id: `${this.$route.params.id}`,
         stars: "",
         rating: "",
         comment: "",
         post: ""
-        
-      }
+      },
+      showContent: "",
+      postItem: ""
     };
   },
   methods: {
@@ -208,35 +185,45 @@ export default {
     },
     open: function() {
       // dataのdialogをtrueに書き換えているだけ
-      this.dialog = true;
       // 逆にfalseにすれば閉じるを実装できる
+      if (this.$auth.loggedIn) {
+        this.dialog = true;
+      } else {
+        this.$router.push("/guide");
+      }
     },
-
     close: function() {
       this.dialog = false;
     },
 
     openReviewForm() {
       this.reviewParams = {
-        post_id: "",
+        post_id: `${this.$route.params.id}`,
         stars: "",
         comment: "",
         post: "",
         user_id: ""
       };
+    },
+    openModal(path) {
+      this.showContent = true;
+      this.selectedImage = path;
+    },
+    closeModal() {
+      this.showContent = false;
     }
-    
   }
 };
 </script>
 <style scoped>
-.review{
-  color:black;
-  position:absolute;
-  top:30%;
+.review {
+  color: black;
+  top: 190%;
+  margin: 0 auto;
+  padding-top: 0;
 }
-.item{
-  height:200vh;
+.item {
+  height: 200vh;
 }
 .title {
   text-align: left;
@@ -246,13 +233,13 @@ export default {
 }
 
 .post_name {
-  left: 3%;
-  top: 8%;
-  margin-bottom: 10%;
-  width: 54%;
-  position: absolute;
-  color: #696969;
+  top: 20%;
+  font-size: 15px;
+  font-family: serif;
   border-bottom: solid 2px orange;
+  width: 88%;
+  padding-top: 10%;
+  margin-left: 5%;
 }
 .post_content {
   width: 80%;
@@ -267,7 +254,7 @@ export default {
 .post_image {
   display: flex;
   color: #696969;
-  padding-top: 20%;
+  padding-top: 5%;
   padding-left: 30px;
   margin-right: 10%;
 }
@@ -345,15 +332,15 @@ h3 {
   left: 5%;
   width: 100%;
 }
-.name{
-  color:black;
+.name {
+  color: black;
 }
 .item {
   left: 5%;
 }
 .image img {
   color: #696969;
-  width:40px;
+  width: 40px;
 }
 .googlemap_box {
   text-align: center;
@@ -369,17 +356,17 @@ h5 {
   width: 30px;
   margin: 0 auto;
   padding-top: 10%;
-  padding-right: 10%;
+  padding-right: 15%;
 }
-.button1{
-  position:abolute;
-  width:30px;
+.button1 {
+  position: abolute;
+  width: 30px;
 }
 .modal-body {
   background-color: white;
   color: black;
   text-align: center;
-  height: 200px;
+  height: 500px;
 }
 .rate-form {
   display: flex;
@@ -410,20 +397,22 @@ h5 {
   border: 1px solid #333;
   height: 30%;
 }
-.carousel-inner{
-  width:100px;
-  text-align:center;
-  padding:30px;
+.carousel-inner {
+  width: 100px;
+  text-align: center;
+  padding: 30px;
 }
-.carousel-item img{
-  width:100px;
-  text-align:center;
+.carousel-item img {
+  width: 100px;
+  text-align: center;
+  margin-left: 50px;
 }
-.image { 
-  width:400px;
-} 
-.content{
-  width:500px;
+.image {
+  width: 300px;
 }
-
+.content {
+  width: 350px;
+  font-size: 16px;
+  padding-right: 10px;
+}
 </style>

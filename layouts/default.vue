@@ -1,4 +1,5 @@
 <template>
+<v-height>
   <v-app dark>
     <v-navigation-drawer
       v-model="drawer"
@@ -16,7 +17,7 @@
           exact
         >
           <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon>{{ item.icon }}</v-icon>   
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title v-text="item.title" />
@@ -62,6 +63,7 @@
     </v-footer>
     </div>
   </v-app>
+  </v-height>
 </template>
 
 <script>
@@ -83,7 +85,7 @@ export default {
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'ログアウト',
+          title: 'myページ',
           to:'/dashboard'
         },
         {
@@ -106,10 +108,11 @@ export default {
  
 }
 .v-footer{
-  position:absolute;
-  bottom:0;
-  margin:0%;
-  padding:0%;
+  
+position:fixed;
+}
+.v-list{
+height:200vh;
 }
 
 .main{
@@ -121,7 +124,11 @@ export default {
   margin:0;
 }
 .footer-position{
-position:absolute;
-bottom:100px;
+         
+        bottom:0;
+
+}
+.v-height{
+  height:200vh;
 }
 </style>

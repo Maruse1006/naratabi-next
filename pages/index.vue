@@ -39,15 +39,18 @@
     </div>
     <div class="image_post">
       <div class="photoshow">
-        　<div class="post">
-        <NuxtLink to="/show">
-        　写真 
-        </NuxtLink>       
-          </div>
-       
-        <NuxtLink to="/form">
-          <div class="photoshowtitle"><a>奈良の写真を投稿する！</a></div>
-        </NuxtLink>
+        <div class="post">
+          <NuxtLink to="/show">
+            写真一覧
+          </NuxtLink>
+        </div>
+
+        <!-- <NuxtLink to="/form"> -->
+        <button v-on:click="move" class="photoshowtitle">
+          <a>写真を投稿する</a>
+        </button>
+        <!-- <div class="photoshowtitle"><a>奈良の写真を投稿する！</a></div> -->
+        <!-- </NuxtLink> -->
       </div>
     </div>
   </div>
@@ -64,7 +67,7 @@ export default {
       category: [],
       post: [],
       id: "",
-      user:"",
+      user: "",
       name: "",
       current_slide: 0,
       images: "",
@@ -114,15 +117,14 @@ export default {
       this.$router.push({ path: `category/${id}` });
       console.log(id);
     },
-    //  move(){
-    //    if(this.user){
-    //   this.$router.push('./show');
-     
-    //    }else{
-    //   this.$router.push('./show/show');
-    //    }
-    //     console.log(user);
-    // },
+    move() {
+      if (this.$auth.loggedIn) {
+        this.$router.push("./form");
+      } else {
+        this.$router.push("./");
+      }
+      console.log(user);
+    },
     slideshow(images) {
       const current = images[this.index];
       const prev = images[this.index - 1]
@@ -137,6 +139,12 @@ export default {
 };
 </script>
 <style scoped>
+.container {
+  height: 200vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .title {
   position: absolute;
   top: 15%;
@@ -153,14 +161,14 @@ export default {
 }
 .photoshowtitle {
   position: absolute;
-  top: 80%;
+  top: 65%;
   color: #fff;
   font-family: 游明朝体;
   font-size: 30px;
   background-color: hsl(182deg 81% 76%);
   z-index: 1;
   width: 100%;
-  height: 20%;
+  height: 35%;
   float: right;
   margin-right: 3%;
 }
@@ -169,15 +177,14 @@ export default {
   color: #fff;
   border-radius: 4px;
   font-size: 25px;
-  margin-top: 15%;
-  margin-left: 35%;
+  margin-top: 10%;
 }
 
 .search {
   top: 100%;
 
   padding-top: 80px;
-  clor: #c0c0c0;
+  color: #c0c0c0;
 }
 .photoshow {
   left: 20%;
@@ -217,7 +224,7 @@ export default {
 .select_title,
 ::after {
   color: black;
-  top: 50%;
+  top: 40%;
   position: absolute;
   font-size: 20px;
   background-color: #f2f2f3;
@@ -252,7 +259,7 @@ select_title::after {
 .post {
   color: #0095ee;
   position: absolute;
-  top: 88%;
+  top: 95%;
   left: 44%;
   z-index: 50;
 }
@@ -281,5 +288,8 @@ select_title::after {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+.v-footer {
+  margin-top: 150%;
 }
 </style>

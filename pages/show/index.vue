@@ -8,21 +8,22 @@
     <NuxtLink to="/form">
       こちらへ
     </NuxtLink>
-  　<vue-star animate="animated bounceIn" color="#222222">
-    <i slot="icon" class="fa fa-heart"></i>
-  　</vue-star>
-    
+    <vue-star animate="animated bounceIn" color="#222222">
+      <i slot="icon" class="fa fa-heart"></i>
+    </vue-star>
+
     <div class="wrapper">
       <div class="box">
         <div class="content">
           <div v-for="image in images" class="flex">
             <img v-bind:src="image.path" />
             <a>{{ image.title }}</a>
-            {{image.likes_count}}
-           <div >
-              <LikeButton :id="image.id"/>
+            {{ image.likes_count }}
+            <div>
+              <UnlikeButton :id="image.id" v-if="image.isLike" />
+              <LikeButton :id="image.id" v-else />
+            </div>
           </div>
-          </div>     
         </div>
       </div>
     </div>
@@ -31,50 +32,52 @@
 
 <script>
 import axios from "axios";
-import  LikeButton from '@/components/LikeButton.vue'
+import LikeButton from "@/components/LikeButton.vue";
+import UnLikeButton from "@/components/UnLikeButton.vue";
 
 export default {
-  name:'Index',
+  name: "Index",
   components: {
-    LikeButton
+    LikeButton,
+    UnLikeButton
   },
   data() {
     return {
-      userId:"",
-      id:"image.id",
+      userId: "",
+      id: "image.id",
       images: [],
       image: {},
-      imageId:{},
+      imageId: {},
       title: "",
       path: [],
-      imageId:"",
+      imageId: "",
       customizedClass: "hoge",
-      buttonstate:false,
-      count:"",
-      like_count:"",
-      loggedIn:false
+      buttonstate: true,
+      clickstate: true,
+      count: "",
+      like_count: "",
+      loggedIn: false,
+      img: ""
     };
   },
   created() {
-
     this.getCategories();
   },
   methods: {
     favorite(imageId) {
-                 console.log(imageId);
-                // axios.post(`http://127.0.0.1:8000/api/like/${id}`)
-                this.buttonstate =!this.buttonstate
-                this.id =id
-                axios.post(`http://127.0.0.1:8000/api/like/${imageId}`)
-                .then(res => {
-                                 
-                }).catch(function(error) {
-                    console.log(error);
-                });
-            },  
-      
+      console.log(imageId);
+      // axios.post(`http://127.0.0.1:8000/api/like/${id}`)
+      this.buttonstate = !this.buttonstate;
+      this.id = id;
+      axios
+        .post(`http://127.0.0.1:8000/api/like/${imageId}`)
+        .then(res => {})
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+
     getCategories: function() {
-      
       // axios.get(`http://127.0.0.1:8000/api/show`).then(response => {
       //   this.images = response.data.images;
       //   this.path = response.data.path;
@@ -82,30 +85,31 @@ export default {
       //  // this.image.likes_count = response.data.image.likes_count;
       //   console.log(response.data.images);
       // });
-    
-    var url;
-     if(this.$auth.loggedIn){
-     url = 'http://127.0.0.1:8000/api/show'
-     } else {
-     url = 'http://127.0.0.1:8000/api/show/show'
-     }
-     axios.get(url).then(response => {
+
+      var url;
+      if (this.$auth.loggedIn) {
+        url = "http://127.0.0.1:8000/api/show";
+      } else {
+        url = "http://127.0.0.1:8000/api/show/show";
+      }
+      axios.get(url).then(response => {
         this.images = response.data.images;
         this.path = response.data.path;
-      //  this.user=response.data.user;
-       // this.image.likes_count = response.data.image.likes_count;
+        this.imgs = response.data.imgs;
+        console.log(response);
+        //  this.user=response.data.user;
+        // this.image.likes_count = response.data.image.likes_count;
         console.log(this.loggedIn);
       });
+    }
   }
-  }
-  };
-
+};
 </script>
 
 <style scoped>
 .customizedClass {
   color: black;
-  height:250Vh;
+  height: 250vh;
 }
 .title {
   text-align: center;
@@ -153,42 +157,45 @@ label {
 label svg {
   width: 50px;
 }
-.buttoncolor{
-  fill: #FAE2E2;
-  transition: all .3s;
+.buttoncolor {
+  fill: #fae2e2;
+  transition: all 0.3s;
 }
 @keyframes like {
   0% {
-    transform: scale(1,1);
+    transform: scale(1, 1);
   }
   50% {
-    transform: scale(.5,.5);
+    transform: scale(0.5, 0.5);
   }
   100% {
-    transform: scale(1,1);
+    transform: scale(1, 1);
   }
 }
-.buttoncolor{
-  fill: #FA9797;
-  animation: like .8s ease-out;
-  transition: all .3s;
+.buttoncolor {
+  fill: #fa9797;
+  animation: like 0.8s ease-out;
+  transition: all 0.3s;
 }
-.buttoncolor{
-    color:red;
-  }
+.buttoncolor {
+  color: red;
+}
+.click {
+  color: red;
+}
 @keyframes circle {
   0% {
-    transform: scale(.2,.2);
+    transform: scale(0.2, 0.2);
   }
   50% {
-    transform: scale(.5,.5);
+    transform: scale(0.5, 0.5);
   }
   80% {
-    transform: scale(1,1);
-    opacity: .8;
+    transform: scale(1, 1);
+    opacity: 0.8;
   }
   100% {
-    transform: scale(1.3,1.3);
+    transform: scale(1.3, 1.3);
     opacity: 0;
   }
 }

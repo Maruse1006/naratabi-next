@@ -1,7 +1,7 @@
 <template>
   <button
     @click="favorite(id)"
-    v-bind:class="{ buttoncolor: buttonstate }"
+    v-bind:class="{ clickcolor: clickstate }"
     value="&#xf164;いいね"
   >
     <font-awesome-icon
@@ -24,7 +24,7 @@ export default {
     return {
       image: {},
       imageId: {},
-      buttonstate: false
+      clickstate: true
     };
   },
   methods: {
@@ -51,17 +51,12 @@ export default {
 };
 </script>
 <style scoped>
-.buttoncolor {
-  fill: #fa9797;
-  animation: like 0.8s ease-out;
-  transition: all 0.3s;
-}
-.buttoncolor {
+.clickcolor {
   color: red;
+  /* animation: like 0.8s ease-in;
+  transition: all 0.3s; */
 }
-.click {
-  color: red;
-}
+
 @keyframes circle {
   0% {
     transform: scale(0.2, 0.2);

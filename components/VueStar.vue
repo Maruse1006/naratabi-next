@@ -1,6 +1,6 @@
 <template>
  
-  
+  <v-star value="5"></v-star>
   
 </template>
 

@@ -119,12 +119,13 @@ h1 {
   animation: fadeIn 3s ease 0.3s 1 normal;
 }
 .password {
-  //border: 1px solid #333;
-  //background: #e4fdff;
+  border: 1px solid #333;
+  background: #e4fdff;
   cursor: pointer;
   width: 50%;
   margin: 0 auto;
   animation: fadein-anim 15s linear forwards;
+  animation: fadeIn 3s ease 0.3s 1 normal;
 }
 .password1 {
   position: relative;
@@ -179,6 +180,8 @@ input {
   top: 65%;
   left: 40%;
   position: absolute;
+  animation: fadein-anim 15s linear forwards;
+  animation: fadeIn 3s ease 0.3s 1 normal;
 }
 .tran {
   background-color: black;

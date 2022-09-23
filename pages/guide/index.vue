@@ -1,16 +1,12 @@
 <template>
   <div class="container">
     <div>
-      <div class="title">myページ</div>
-     
-      <!-- {{$auth.id}} -->
        <div class="login">ログイン状態：{{ $auth.loggedIn }}</div>
-       <!-- <div class="id">ユーザーid：{{ $auth.user.id}}</div> -->
-       <div class="name">ユーザー名：{{ $auth.user.user}}</div>
-
-      <div class="button">
-       <div class="logout"><button @click="$auth.logout()">ログアウト</button></div>
-       <!-- <div class="edit"><button v-on:click="editItem($auth.user.id)" class="btn btn-default" type="button">編集</button></div> -->
+       <a>ログインアウトしますか</a>
+       <div class="logout"><button @click="move">はい</button></div>
+        <nuxt-link to="/">いいえ</nuxt-link>
+      　<div class="block">
+       <a>ログイン後、投稿できます</a>
        </div>
     </div>
   </div>
@@ -22,11 +18,14 @@ export default {
       return this.$auth.user;
   },
   created() {
-    console.log(this.$auth);
+    
   },
   methods:{
- 
+  
+    move(){
+          this.$router.push('/login');
   },
+  }
 };
 </script>
 <style scoped>
