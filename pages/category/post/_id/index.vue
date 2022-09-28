@@ -217,10 +217,11 @@ export default {
 </script>
 <style scoped>
 .review {
-  color: black;
-  top: 190%;
+  color: blue;
+  /* position: absolute; */
+  top: 80%;
   margin: 0 auto;
-  padding-top: 0;
+  padding-top: 5%;
 }
 .item {
   height: 200vh;
@@ -414,5 +415,14 @@ h5 {
   width: 350px;
   font-size: 16px;
   padding-right: 10px;
+}
+@media screen and (min-width: 700px) {
+  .review {
+    color: blue;
+    top: 80%;
+    left: 5%;
+    margin: 0 auto;
+    padding-top: 5%;
+  }
 }
 </style>

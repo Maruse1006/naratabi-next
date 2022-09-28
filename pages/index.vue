@@ -39,18 +39,18 @@
     </div>
     <div class="image_post">
       <div class="photoshow">
-        <div class="post">
-          <NuxtLink to="/show">
-            写真一覧
-          </NuxtLink>
-        </div>
+        <!-- <div class="post"> -->
+        <div class="back">
+          <div>
+            <button v-on:click="postImage" class="input">
+              写真一覧
+            </button>
 
-        <!-- <NuxtLink to="/form"> -->
-        <button v-on:click="move" class="photoshowtitle">
-          <a>写真を投稿する</a>
-        </button>
-        <!-- <div class="photoshowtitle"><a>奈良の写真を投稿する！</a></div> -->
-        <!-- </NuxtLink> -->
+            <button v-on:click="move" class="photoshowtitle">
+              写真を投稿する
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -125,6 +125,9 @@ export default {
       }
       console.log(user);
     },
+    postImage() {
+      this.$router.push("./show");
+    },
     slideshow(images) {
       const current = images[this.index];
       const prev = images[this.index - 1]
@@ -139,6 +142,24 @@ export default {
 };
 </script>
 <style scoped>
+.back {
+  background-color: hsl(182deg 81% 76%);
+  position: absolute;
+  top: 50%;
+  width: 90%;
+  height: 80%;
+}
+.postbutton {
+  width: 100px;
+}
+.post {
+  color: #0095ee;
+  position: absolute;
+  top: 95%;
+  left: 44%;
+  z-index: 1;
+  margin: 30px;
+}
 .container {
   height: 200vh;
   display: flex;
@@ -161,23 +182,28 @@ export default {
 }
 .photoshowtitle {
   position: absolute;
+  left: 48%;
   top: 65%;
   color: #fff;
   font-family: 游明朝体;
-  font-size: 30px;
-  background-color: hsl(182deg 81% 76%);
+  font-size: 18px;
+  padding: 10px;
+  background-color: deepskyblue;
   z-index: 1;
-  width: 100%;
-  height: 35%;
+  width: 35%;
+  height: 10%;
   float: right;
   margin-right: 3%;
+  padding: 50px 40px;
+  border-radius: 100px;
 }
 .photoshowtitle a {
-  background-color: rgb(0, 149, 238);
+  background-color: #2f09f04f;
   color: #fff;
-  border-radius: 4px;
+  border-radius: 10px;
   font-size: 25px;
   margin-top: 10%;
+  padding: 10px;
 }
 
 .search {
@@ -187,7 +213,7 @@ export default {
   color: #c0c0c0;
 }
 .photoshow {
-  left: 20%;
+  left: 50%;
   top: 200%;
   background-color: #fff;
   display: flex;
@@ -208,6 +234,7 @@ export default {
 .select {
   width: 50%;
   height: 44px;
+  left: 50px;
   color: #a0a4ad;
   padding-left: 15px;
   display: flex;
@@ -224,7 +251,7 @@ export default {
 .select_title,
 ::after {
   color: black;
-  top: 40%;
+  top: 30%;
   position: absolute;
   font-size: 20px;
   background-color: #f2f2f3;
@@ -259,9 +286,10 @@ select_title::after {
 .post {
   color: #0095ee;
   position: absolute;
-  top: 95%;
+  top: 70%;
   left: 44%;
-  z-index: 50;
+  z-index: 1;
+  margin: 30px;
 }
 
 .slider-outer {
@@ -291,5 +319,103 @@ select_title::after {
 }
 .v-footer {
   margin-top: 150%;
+}
+
+.background {
+  background-color: hsl(182deg 81% 76%);
+  position: absolute;
+  width: 1000px;
+  height: 1000px;
+  top: 400px;
+}
+.input {
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  padding: 20px 30px;
+  height: 18%;
+  width: 35%;
+  border-radius: 100px;
+  top: 65%;
+  left: 5%;
+  position: absolute;
+}
+
+@media screen and (min-width: 700px) {
+  .back {
+    background-color: hsl(182deg 81% 76%);
+    position: absolute;
+    top: 50%;
+
+    display: flex;
+    flex-direction: wrap;
+    position: absolute;
+    flex-direction: wrap;
+  }
+
+  .photoshowtitle {
+    /* position: relative;
+    top: 55%;
+    color: #fff;
+    font-family: 游明朝体; */
+    font-size: 30px;
+    left: 50%;
+    background-color: deepskyblue;
+    /* z-index: 1;*/
+    width: 45%;
+    height: 15%;
+    /* left: 25%;
+    float: right;
+    margin-right: 3%;
+    border-radius: 200px; */
+  }
+  .photoshow a {
+    color: #fff;
+    font-size: 30px;
+    font-family: 游明朝体;
+  }
+  .background {
+    background-color: hsl(182deg 81% 76%);
+    position: absolute;
+    top: 800px;
+    width: 100%;
+  }
+  .input {
+    position: absolute;
+
+    top: 65%;
+    color: #fff;
+    font-family: 游明朝体;
+    font-size: 30px;
+    padding: 10px;
+    background: #222;
+    z-index: 1;
+    width: 45%;
+    height: 15%;
+    float: right;
+    margin-right: 3%;
+    padding: 50px 40px;
+    border-radius: 100px;
+  }
+  .post {
+    color: #0095ee;
+    position: absolute;
+    top: 95%;
+    left: 44%;
+    z-index: 1;
+    margin: 10px;
+  }
+  .select {
+    height: 50%;
+    width: 80%;
+    border-radius: 40px;
+  }
+  .image_post {
+    display: flex;
+    flex-direction: wrap;
+  }
+  .fade {
+    position: relative;
+  }
 }
 </style>

@@ -9,14 +9,13 @@
 <script>
 import axios from "axios";
 export default {
-  name: "Modal",
+  name: "Phote",
 
   props: ["src"],
 
   data() {
     return {
-      post: [],
-      items: [{ path: "" }, { path2: "" }]
+      post: []
     };
   }
 };
@@ -48,8 +47,8 @@ export default {
 }
 .modal {
   position: absolute;
-  top: 70%;
+  top: 330px;
   z-index: 10;
-  color: black;
+  color: white;
 }
 </style>

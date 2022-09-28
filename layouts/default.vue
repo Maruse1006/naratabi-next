@@ -1,5 +1,4 @@
 <template>
-<v-height>
   <v-app dark>
     <v-navigation-drawer
       v-model="drawer"
@@ -63,7 +62,6 @@
     </v-footer>
     </div>
   </v-app>
-  </v-height>
 </template>
 
 <script>
@@ -87,11 +85,6 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'myページ',
           to:'/dashboard'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: '編集',
-          to: '/post'
         }
       ],
       miniVariant: false,
@@ -103,6 +96,9 @@ export default {
 }
 </script>
 <style scoped>
+.v-toolbar_content{
+  z-index: 20;
+}
 .v-application {
   background-color:#fff;
  

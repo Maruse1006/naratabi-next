@@ -52,30 +52,23 @@ export default {
 </script>
 <style scoped>
 .buttoncolor {
-  fill: #fa9797;
+  color: #fa9797;
   animation: like 0.8s ease-out;
   transition: all 0.3s;
 }
 .buttoncolor {
   color: red;
 }
-.click {
-  color: red;
-}
-@keyframes circle {
+
+@keyframes like {
   0% {
-    transform: scale(0.2, 0.2);
+    transform: scale(1, 1);
   }
   50% {
     transform: scale(0.5, 0.5);
   }
-  80% {
-    transform: scale(1, 1);
-    opacity: 0.8;
-  }
   100% {
-    transform: scale(1.3, 1.3);
-    opacity: 0;
+    transform: scale(1, 1);
   }
 }
 </style>

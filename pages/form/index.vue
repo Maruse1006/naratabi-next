@@ -8,16 +8,6 @@
       />
     </div>
     <div class="wrapper">
-      <!-- <div class="file">
-        <input
-          type="file"
-          ref="preview"
-          accept="image/jpeg, image/png"
-          @change="onChangeImage"
-          class="preview"
-        />
-        <img :src="imageData" v-if="imageData" />
-      </div> -->
       <div class="box"></div>
 
       <div class="title">
@@ -138,20 +128,21 @@ h1 {
   background-color: rgb(51 51 51 / 15%);
 }
 .file img {
-  width: 30%;
+  position: absolute;
+  width: 10%;
+  left: 60%;
 }
 .input {
   top: 75%;
   text-align: center;
-  position: absolute;
   background-color: #ccc;
-  left: 30%;
+
   width: 50%;
 }
 .text {
+  margin: 0 auto;
   border: 1px gray double;
   width: 50%;
-  margin-left: 30%;
 }
 .back_image img {
   width: 100%;

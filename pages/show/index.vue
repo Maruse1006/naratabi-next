@@ -1,13 +1,21 @@
 <template>
   <div class="customizedClass">
     <div class="title">
-      <h1>投稿一覧</h1>
+      <div class="back_image">
+        <img
+          src="https://naratabi.s3.ap-northeast-1.amazonaws.com/images/sonikogen.jpg"
+          style="width=100%"
+        />
+        <h1>投稿一覧</h1>
+        <p>
+          奈良の写真を投稿することができます。 投稿ページは
+          <NuxtLink to="/form">
+            こちらへ
+          </NuxtLink>
+        </p>
+      </div>
     </div>
 
-    奈良の写真を投稿することができます。 投稿ページは
-    <NuxtLink to="/form">
-      こちらへ
-    </NuxtLink>
     <vue-star animate="animated bounceIn" color="#222222">
       <i slot="icon" class="fa fa-heart"></i>
     </vue-star>
@@ -16,7 +24,12 @@
       <div class="box">
         <div class="content">
           <div v-for="image in images" class="flex">
-            <img v-bind:src="image.path" />
+            <img v-bind:src="image.path" @click="openModal(image.path)" />
+            <modal
+              :src="selectedImage"
+              v-show="showContent"
+              @close="closeModal"
+            />
             <a>{{ image.title }}</a>
             {{ image.likes_count }}
             <div>
@@ -34,12 +47,14 @@
 import axios from "axios";
 import LikeButton from "@/components/LikeButton.vue";
 import UnLikeButton from "@/components/UnLikeButton.vue";
+import Photo from "@/components/Photo.vue";
 
 export default {
   name: "Index",
   components: {
     LikeButton,
-    UnLikeButton
+    UnLikeButton,
+    Photo
   },
   data() {
     return {
@@ -57,7 +72,9 @@ export default {
       count: "",
       like_count: "",
       loggedIn: false,
-      img: ""
+      img: "",
+      showContent: "",
+      selectedImage: ""
     };
   },
   created() {
@@ -76,16 +93,15 @@ export default {
           console.log(error);
         });
     },
+    openModal(path) {
+      this.showContent = true;
+      this.selectedImage = path;
+    },
+    closeModal() {
+      this.showContent = false;
+    },
 
     getCategories: function() {
-      // axios.get(`http://127.0.0.1:8000/api/show`).then(response => {
-      //   this.images = response.data.images;
-      //   this.path = response.data.path;
-      // //  this.user=response.data.user;
-      //  // this.image.likes_count = response.data.image.likes_count;
-      //   console.log(response.data.images);
-      // });
-
       var url;
       if (this.$auth.loggedIn) {
         url = "http://127.0.0.1:8000/api/show";
@@ -97,8 +113,6 @@ export default {
         this.path = response.data.path;
         this.imgs = response.data.imgs;
         console.log(response);
-        //  this.user=response.data.user;
-        // this.image.likes_count = response.data.image.likes_count;
         console.log(this.loggedIn);
       });
     }
@@ -113,16 +127,20 @@ export default {
 }
 .title {
   text-align: center;
-  padding-top: 5%;
   color: #000;
 }
 h1 {
-  font-family: Arial;
-  font-size: 30px;
+  position: absolute;
+  top: 10%;
+  color: #fff;
+  font-family: serif;
+  text-align: center;
+  left: 40%;
 }
 .form {
   text-align: center;
   padding-top: 5%;
+  color: white;
 }
 .content {
   display: flex;
@@ -156,6 +174,8 @@ label {
 }
 label svg {
   width: 50px;
+}
+p {
 }
 .buttoncolor {
   fill: #fae2e2;
@@ -197,6 +217,26 @@ label svg {
   100% {
     transform: scale(1.3, 1.3);
     opacity: 0;
+    color: white;
   }
+}
+.back_image img {
+  width: 100%;
+  height: 200px;
+}
+h1 {
+  position: absolute;
+  top: 5%;
+  color: #fff;
+  font-family: serif;
+  text-align: center;
+  left: 40%;
+}
+.form p {
+  position: absolute;
+  top: 120px;
+  background-color: transparent;
+  margin: 0 auto;
+  text-align: center;
 }
 </style>
