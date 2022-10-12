@@ -37,21 +37,16 @@
         </select>
       </div>
     </div>
-    <div class="image_post">
-      <div class="photoshow">
-        <!-- <div class="post"> -->
-        <div class="back">
-          <div>
-            <button v-on:click="postImage" class="input">
-              写真一覧
-            </button>
 
-            <button v-on:click="move" class="photoshowtitle">
-              写真を投稿する
-            </button>
-          </div>
-        </div>
-      </div>
+    <!-- <div class="post"> -->
+    <div class="back">
+      <button v-on:click="postImage" class="input">
+        写真一覧
+      </button>
+
+      <button v-on:click="move" class="photoshowtitle">
+        写真を投稿する
+      </button>
     </div>
   </div>
 </template>
@@ -146,7 +141,7 @@ export default {
   background-color: hsl(182deg 81% 76%);
   position: absolute;
   top: 50%;
-  width: 90%;
+  width: 100%;
   height: 80%;
 }
 .postbutton {
@@ -161,7 +156,7 @@ export default {
   margin: 30px;
 }
 .container {
-  height: 200vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -191,10 +186,9 @@ export default {
   background-color: deepskyblue;
   z-index: 1;
   width: 35%;
-  height: 10%;
+  height: 18%;
   float: right;
   margin-right: 3%;
-  padding: 50px 40px;
   border-radius: 100px;
 }
 .photoshowtitle a {
@@ -346,7 +340,7 @@ select_title::after {
     background-color: hsl(182deg 81% 76%);
     position: absolute;
     top: 50%;
-
+    width: 100%;
     display: flex;
     flex-direction: wrap;
     position: absolute;
@@ -394,7 +388,7 @@ select_title::after {
     height: 15%;
     float: right;
     margin-right: 3%;
-    padding: 50px 40px;
+
     border-radius: 100px;
   }
   .post {

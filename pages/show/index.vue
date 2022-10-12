@@ -1,5 +1,5 @@
 <template>
-  <div class="customizedClass">
+  <div class="container">
     <div class="title">
       <div class="back_image">
         <img
@@ -50,6 +50,7 @@ import UnLikeButton from "@/components/UnLikeButton.vue";
 import Photo from "@/components/Photo.vue";
 
 export default {
+  layout: "list",
   name: "Index",
   components: {
     LikeButton,
@@ -121,9 +122,13 @@ export default {
 </script>
 
 <style scoped>
-.customizedClass {
+.container {
   color: black;
+  margin: 0 auto;
   height: 250vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 .title {
   text-align: center;
@@ -135,7 +140,8 @@ h1 {
   color: #fff;
   font-family: serif;
   text-align: center;
-  left: 40%;
+  display: block;
+  /* left: 40%; */
 }
 .form {
   text-align: center;
@@ -166,6 +172,7 @@ h1 {
 .flex img {
   width: 120px;
   height: 100px;
+  padding: 10px;
 }
 
 label {
@@ -221,8 +228,8 @@ p {
   }
 }
 .back_image img {
-  width: 100%;
-  height: 200px;
+  width: 140%;
+  height: 160px;
 }
 h1 {
   position: absolute;

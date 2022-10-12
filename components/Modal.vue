@@ -48,8 +48,16 @@ export default {
 }
 .modal {
   position: absolute;
-  top: 70%;
+  top: 60%;
   z-index: 10;
   color: black;
+}
+@media screen and (max-width: 699px) {
+  .modal {
+    position: absolute;
+    top: 80%;
+    z-index: 10;
+    color: black;
+  }
 }
 </style>

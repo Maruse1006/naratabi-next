@@ -44,11 +44,11 @@
       <v-spacer />
       
       </v-btn>
-    </v-app-bar>s
+    </v-app-bar>
     
-      <v-container>
+     
         <nuxt />
-      </v-container>
+     
     
     <div id="app">
     
@@ -115,9 +115,10 @@ height:200vh;
   padding:0;
   margin:0;
 }
-.container{
-  padding:0;
-  margin:0;
+.v-app{
+  
+  margin:0 auto;
+  height:100vh;
 }
 .footer-position{
          
@@ -126,8 +127,5 @@ height:200vh;
 }
 .v-height{
   height:200vh;
-}
-.v-toolbar{
-  z-index:30;
 }
 </style>

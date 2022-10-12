@@ -110,6 +110,7 @@ import Modal from "~/components/Modal.vue";
 import FirstChild from "@/components/FirstChild.vue";
 
 export default {
+  layout: "list",
   components: {
     Modal
   },
@@ -218,13 +219,19 @@ export default {
 <style scoped>
 .review {
   color: blue;
-  /* position: absolute; */
-  top: 80%;
-  margin: 0 auto;
+  margin-left: 45%;
+  top: 70%;
+  left: 50%;
+  width: 40%;
+
   padding-top: 5%;
 }
+.container {
+  margin: 0 auto;
+}
 .item {
-  height: 200vh;
+  margin: 0 auto;
+  height: 300vh;
 }
 .title {
   text-align: left;
@@ -234,13 +241,13 @@ export default {
 }
 
 .post_name {
-  top: 20%;
+  top: 30%;
   font-size: 15px;
   font-family: serif;
   border-bottom: solid 2px orange;
   width: 88%;
-  padding-top: 10%;
-  margin-left: 5%;
+  padding-top: 30%;
+  margin-left: 6%;
 }
 .post_content {
   width: 80%;
@@ -269,6 +276,7 @@ export default {
   float: left;
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 }
 
 .swiper-container {
@@ -337,7 +345,7 @@ h3 {
   color: black;
 }
 .item {
-  left: 5%;
+  margin: 0 auto;
 }
 .image img {
   color: #696969;
@@ -412,7 +420,7 @@ h5 {
   width: 300px;
 }
 .content {
-  width: 350px;
+  width: 80%;
   font-size: 16px;
   padding-right: 10px;
 }
@@ -422,6 +430,20 @@ h5 {
     top: 80%;
     left: 5%;
     margin: 0 auto;
+    padding-top: 5%;
+  }
+  .button {
+    position: relative;
+  }
+  .item {
+    width: 140%;
+    margin: 0 auto;
+  }
+  .review a {
+    color: blue;
+    top: 90%;
+    left: 42%;
+    width: 40%;
     padding-top: 5%;
   }
 }

@@ -59,20 +59,18 @@ export default {
 
     postImage: function() {
       const config = {
-        header: {
+        headers: {
           "Content-Type": "multipart/form-data"
         }
       };
 
       var formData = new FormData();
-
+      console.log(this.image);
       formData.append("image", this.image);
       formData.append("title", this.title);
 
       axios
-        .post("http://127.0.0.1:8000/api/form/s3", formData, config, {
-          title: this.title
-        })
+        .post("http://127.0.0.1:8000/api/form/s3", formData, config)
         .then(res => {
           this.title = "";
           this.saved = true;
@@ -125,7 +123,6 @@ h1 {
 }
 .form {
   color: #000;
-  background-color: rgb(51 51 51 / 15%);
 }
 .file img {
   position: absolute;
@@ -145,7 +142,7 @@ h1 {
   width: 50%;
 }
 .back_image img {
-  width: 100%;
+  width: 140%;
   height: 50%;
   height: 200px;
 }

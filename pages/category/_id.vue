@@ -19,11 +19,14 @@
           </div>
         </div>
       </div>
-      <v-pagination
-        v-model="page"
-        :length="length"
-        @input="pageChange"
-      ></v-pagination>
+      <div class="nav">
+        <v-pagination
+          v-model="page"
+          :length="length"
+          @input="pageChange"
+          class="pagenation"
+        ></v-pagination>
+      </div>
     </v-row>
   </div>
 </template>
@@ -31,6 +34,7 @@
 <script>
 import axios from "axios";
 export default {
+  layout: "list",
   created() {
     axios
       .get(`http://127.0.0.1:8000/api/category/${this.$route.params.id}`)
@@ -54,8 +58,8 @@ export default {
       content: "",
       post_category_name: "",
       path: "",
-      page:1,
-      pageSize:6,
+      page: 1,
+      pageSize: 6,
       length: 0
     };
   },
@@ -83,9 +87,13 @@ export default {
 <style scoped>
 @media screen and (min-width: 700px) {
   /*　画面サイズが480pxからはここを読み込む　*/
+  h2 {
+    text-align: center;
+  }
   .container {
+    margin: 0 auto;
     background-color: #fff;
-    height: 120vh;
+    height: 1000vh;
     width: 100%;
   }
   .list {
@@ -138,7 +146,7 @@ export default {
 @media screen and (max-width: 699px) {
   .container {
     background-color: #fff;
-    height: 200vh;
+    height: 600vh;
     width: 100%;
   }
   .list {
@@ -190,5 +198,14 @@ export default {
   .content2 {
     color: #000;
   }
+  .nav {
+    padding-top: 10%;
+  }
+}
+.container {
+  margin: 0 auto;
+  background-color: #fff;
+  height: 200vh;
+  width: 100%;
 }
 </style>

@@ -6,25 +6,31 @@
           <h1>ようこそ</h1>
         </div>
       </transition>
-
-      <img
-        src="https://naratabi.s3.ap-northeast-1.amazonaws.com/images/2115784_s.jpg"
-      />
-
-      <div class="aaaa">
-        <label>メールアドレス</label><br />
-        <div class="email"><input v-model="form.email" /><br /></div>
-        <label>パスワード</label><br />
-        <div class="password"><input v-model="form.password" /><br /></div>
+      <div class="image">
+        <img
+          src="https://naratabi.s3.ap-northeast-1.amazonaws.com/images/2115784_s.jpg"
+        />
       </div>
-
-      <div class="login">
-        <button type="submit">ログイン</button>
+      <div class="ccc">
+        <div class="aaaa">
+          <label>メールアドレス</label><br />
+          <div class="email"><input v-model="form.email" /><br /></div>
+          <label>パスワード</label><br />
+          <div class="password"><input v-model="form.password" /><br /></div>
+          <div class="login">
+            <div class="submit">
+              <button type="submit">ログイン</button>
+            </div>
+            <div class="register">
+              <v-btn to="/register" nuxt class="bbb">新規登録</v-btn>
+            </div>
+          </div>
+        </div>
       </div>
     </form>
-    <div class="bbb">
+    <!-- <div class="bbb">
       <v-btn to="/register" nuxt class="bbb">新規登録</v-btn>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -72,18 +78,18 @@ export default {
 };
 </script>
 <style scoped>
-.box {
-  background: #50a3a2;
-  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+.image img {
+  margin: 0 auto;
+  opacity: 0.6;
 }
+
 .register {
   padding-top: 20%;
   width: 10%;
   height: 10%;
-  margin-top: 30px;
+  margin-top: 20px;
+  position: absolute;
+  left: 18%;
 }
 .box {
   text-align: center;
@@ -95,15 +101,14 @@ h1 {
   font-weight: 200;
   position: abusolute;
   animation: fadeIn 3s ease 0.3s 1 normal;
-
 }
 @keyframes fadeIn {
-    0% {
-        opacity:0;
-    }
-    100% {
-        opacity:5;
-    }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 5;
+  }
 }
 .email {
   border: 1px solid #333;
@@ -116,6 +121,7 @@ h1 {
   left: 30%;
   z-index: 10;
   animation: fadein-anim 15s linear forwards;
+  animation: fadeIn 3s ease 0.3s 1 normal;
   animation: fadeIn 3s ease 0.3s 1 normal;
 }
 .password {
@@ -137,34 +143,39 @@ h1 {
 .login {
   border-radius: 100vh;
   background-color: #eb6100;
-  width: 20%;
+  width: 120%;
+  height: 35%;
   margin: 0 auto;
   margin-top: 5%;
   position: absolute;
-  top: 50%;
-  left: 40%;
+  top: 120%;
+  left: 15%;
+  color: white;
   animation: fadeIn 3s ease 0.3s 1 normal;
 }
 .box img {
   min-height: 100vh;
-  width: 100%;
+  width: 150%;
   top: 0;
   left: 0;
   position: relative;
   z-index: 0;
-  opacity: 0.6;
+  /* opacity: 0.6; */
 }
 .aaaa {
   position: absolute;
   top: 30%;
-  left: 30%;
+  left: 25%;
+  color: black;
   //z-index: 10;
 }
 .title {
   position: absolute;
-  //z-index: 10;
+  color: black;
+  left: 25%;
   top: 20%;
-  left: 30%;
+
+  width: 60%;
   animation: fadein-anim 15s linear forwards;
 }
 @keyframes fadein-anim {
@@ -177,8 +188,8 @@ input {
   outline: solid 2px black;
 }
 .bbb {
-  top: 65%;
-  left: 40%;
+  top: 135%;
+  /* margin: 0 auto; */
   position: absolute;
   animation: fadein-anim 15s linear forwards;
   animation: fadeIn 3s ease 0.3s 1 normal;
@@ -192,7 +203,6 @@ input {
   transition: opacity 1s;
 }
 
-/* 表示アニメーション */
 .v-enter {
   opacity: 0;
 }

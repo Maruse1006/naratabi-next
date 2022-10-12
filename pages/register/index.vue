@@ -1,5 +1,5 @@
 <template>
-  <div class="form">
+  <div>
     <div class="back_image">
       <img
         src="https://naratabi.s3.ap-northeast-1.amazonaws.com/images/2115784_s.jpg"
@@ -7,16 +7,6 @@
       />
     </div>
     <div class="wrapper">
-      <div class="file">
-        <input
-          type="file"
-          ref="preview"
-          accept="image/jpeg, image/png"
-          @change="onChangeImage"
-          class="preview"
-        />
-        <img :src="imageData" v-if="imageData" />
-      </div>
       <div class="box"></div>
       <div class="title">
         <div class="clumn">
@@ -36,6 +26,16 @@
               placeholder="password"
               required
             />
+            <div class="file">
+              <input
+                type="file"
+                ref="preview"
+                accept="image/jpeg, image/png"
+                @change="onChangeImage"
+                class="preview"
+              />
+              <img :src="imageData" v-if="imageData" />
+            </div>
           </div>
           <button class="input" @click="postImage">送信</button>
         </div>
@@ -103,6 +103,10 @@ export default {
 };
 </script>
 <style scoped>
+.file {
+  /* position: absolute;
+  top: 30%; */
+}
 .title {
   position: absolute;
   top: 100px;
@@ -119,16 +123,15 @@ export default {
   color: black;
   padding-top: 50px;
   display: flex;
-  width: 10%;
+  width: 130%;
   z-index: 5;
   left: 0;
 }
 .back_image img {
   min-height: 100vh;
+  width: 100%;
 }
 .input {
-  position: absolute;
-  top: 100px;
   color: black;
 }
 </style>
