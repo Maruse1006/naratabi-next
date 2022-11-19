@@ -9,9 +9,7 @@
         <h1>投稿一覧</h1>
         <p>
           奈良の写真を投稿することができます。 投稿ページは
-          <NuxtLink to="/form">
-            こちらへ
-          </NuxtLink>
+          <NuxtLink to="/form"> こちらへ </NuxtLink>
         </p>
       </div>
     </div>
@@ -55,7 +53,7 @@ export default {
   components: {
     LikeButton,
     UnLikeButton,
-    Photo
+    Photo,
   },
   data() {
     return {
@@ -75,7 +73,7 @@ export default {
       loggedIn: false,
       img: "",
       showContent: "",
-      selectedImage: ""
+      selectedImage: "",
     };
   },
   created() {
@@ -88,9 +86,9 @@ export default {
       this.buttonstate = !this.buttonstate;
       this.id = id;
       axios
-        .post(`http://127.0.0.1:8000/api/like/${imageId}`)
-        .then(res => {})
-        .catch(function(error) {
+        .post(`like/${imageId}`)
+        .then((res) => {})
+        .catch(function (error) {
           console.log(error);
         });
     },
@@ -102,22 +100,23 @@ export default {
       this.showContent = false;
     },
 
-    getCategories: function() {
+    getCategories: function () {
       var url;
       if (this.$auth.loggedIn) {
-        url = "http://127.0.0.1:8000/api/show";
+        url = "${process.env.BASE_URL}/show";
       } else {
-        url = "http://127.0.0.1:8000/api/show/show";
+        url = "{process.env.BASE_URL}/show/show";
+        // http://127.0.0.1:8000/api/show/show
       }
-      axios.get(url).then(response => {
+      axios.get(url).then((response) => {
         this.images = response.data.images;
         this.path = response.data.path;
         this.imgs = response.data.imgs;
         console.log(response);
         console.log(this.loggedIn);
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

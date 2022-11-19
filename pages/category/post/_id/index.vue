@@ -71,7 +71,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
 
-          <div class="modal-body" style="background:white;color: #222222;">
+          <div class="modal-body" style="background: white; color: #222222">
             <div class="form-group"></div>
             <div class="form-group">
               <h4>コメント</h4>
@@ -112,12 +112,12 @@ import FirstChild from "@/components/FirstChild.vue";
 export default {
   layout: "list",
   components: {
-    Modal
+    Modal,
   },
   created() {
     axios
-      .get(`http://127.0.0.1:8000/api/category/post/${this.$route.params.id}`)
-      .then(response => {
+      .get(`${process.env.BASE_URL}/category/post/${this.$route.params.id}`)
+      .then((response) => {
         this.post = response.data.post;
         this.id = response.data.id;
         this.name = response.data.name;
@@ -160,31 +160,31 @@ export default {
         stars: "",
         rating: "",
         comment: "",
-        post: ""
+        post: "",
       },
       showContent: "",
-      postItem: ""
+      postItem: "",
     };
   },
   methods: {
     returnPage() {
       this.$router.go(-1);
     },
-    jump: function(id) {
+    jump: function (id) {
       this.$router.push({ path: `/${id}` });
       console.log(id);
     },
     onSubmit() {
       axios
         .post(`http://127.0.0.1:8000/api/review`, this.reviewParams)
-        .then(response => {
+        .then((response) => {
           if (response.data.result === true) {
             getPosts();
             $("#review-modal").modal("hide");
           }
         });
     },
-    open: function() {
+    open: function () {
       // dataのdialogをtrueに書き換えているだけ
       // 逆にfalseにすれば閉じるを実装できる
       if (this.$auth.loggedIn) {
@@ -193,7 +193,7 @@ export default {
         this.$router.push("/guide");
       }
     },
-    close: function() {
+    close: function () {
       this.dialog = false;
     },
 
@@ -203,7 +203,7 @@ export default {
         stars: "",
         comment: "",
         post: "",
-        user_id: ""
+        user_id: "",
       };
     },
     openModal(path) {
@@ -212,8 +212,8 @@ export default {
     },
     closeModal() {
       this.showContent = false;
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

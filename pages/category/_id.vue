@@ -1,4 +1,5 @@
-¥<template>
+¥
+<template>
   <div class="container">
     <v-row justify="center">
       <div class="list">
@@ -37,8 +38,8 @@ export default {
   layout: "list",
   created() {
     axios
-      .get(`http://127.0.0.1:8000/api/category/${this.$route.params.id}`)
-      .then(response => {
+      .get(`${process.env.BASE_URL}/category/${this.$route.params.id}`)
+      .then((response) => {
         this.posts = response.data.posts;
         this.length = Math.ceil(this.posts.length / this.pageSize);
         this.id = response.data.id;
@@ -60,28 +61,28 @@ export default {
       path: "",
       page: 1,
       pageSize: 6,
-      length: 0
+      length: 0,
     };
   },
   computed: {
-    currentPosts: function() {
+    currentPosts: function () {
       return this.posts.slice(
         this.pageSize * (this.page - 1),
         this.pageSize * this.page
       );
-    }
+    },
   },
   methods: {
     returnPage() {
       this.$router.go(-1);
     },
-    pageChange: function(pageNumber) {
+    pageChange: function (pageNumber) {
       this.posts.slice(
         this.pageSize * (pageNumber - 1),
         this.pageSize * pageNumber
       );
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

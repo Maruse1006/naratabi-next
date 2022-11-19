@@ -9,7 +9,8 @@
     "generate": "nuxt generate",
     "build-local": "ENV=local nuxt build",
     "build-development": "ENV=development nuxt build",
-    "build-production": "ENV=production nuxt build"
+    "build-production": "ENV=production nuxt build",
+    "develop": "NODE_OPTIONS='--openssl-legacy-provider' gatsby develop"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.1.1",
@@ -26,16 +27,18 @@
     "axios-middleware": "^0.3.1",
     "core-js": "^3.17.3",
     "cross-env": "^7.0.3",
+    "fibers": "^5.0.0",
     "nuxt": "^2.15.8",
-    "swiper": "^8.0.7",
+    "prod": "npm run production",
     "vue-awesome-swiper": "^4.1.1",
-    "vue-star": "0.0.4"
+    "vue-star": "0.0.4",
+    "webpack-cli": "^4.10.0"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.3",
-    "fibers": "^5.0.0",
     "sass": "^1.39.2",
     "sass-loader": "^10.1.1",
-    "style-loader": "^3.3.1"
+    "style-loader": "^3.3.1",
+    "webpack": "^4.46.0"
   }
 }

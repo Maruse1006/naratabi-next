@@ -40,13 +40,9 @@
 
     <!-- <div class="post"> -->
     <div class="back">
-      <button v-on:click="postImage" class="input">
-        写真一覧
-      </button>
+      <button v-on:click="postImage" class="input">写真一覧</button>
 
-      <button v-on:click="move" class="photoshowtitle">
-        写真を投稿する
-      </button>
+      <button v-on:click="move" class="photoshowtitle">写真を投稿する</button>
     </div>
   </div>
 </template>
@@ -66,24 +62,22 @@ export default {
       name: "",
       current_slide: 0,
       images: "",
+      env: "",
       images: [
         {
-          img:
-            "https://naratabi.s3.ap-northeast-1.amazonaws.com/images/shika.JPG"
+          img: "https://naratabi.s3.ap-northeast-1.amazonaws.com/images/shika.JPG",
         },
         {
-          img:
-            "https://naratabi.s3.ap-northeast-1.amazonaws.com/images/oomiwa.JPG"
+          img: "https://naratabi.s3.ap-northeast-1.amazonaws.com/images/oomiwa.JPG",
         },
         {
-          img:
-            "https://naratabi.s3.ap-northeast-1.amazonaws.com/images/BqWJ6Maew497TkYq1oBBkuibneoMO0ERGZWKXJtu.jpeg"
-        }
-      ]
+          img: "https://naratabi.s3.ap-northeast-1.amazonaws.com/images/BqWJ6Maew497TkYq1oBBkuibneoMO0ERGZWKXJtu.jpeg",
+        },
+      ],
     };
   },
   created() {
-    axios.get(`http://127.0.0.1:8000/api/category`).then(response => {
+    axios.get(`${process.env.BASE_URL}`).then((response) => {
       this.categories = response.data.categories;
       console.log(response.data);
     });
@@ -108,7 +102,7 @@ export default {
     //      console.log(response.data);
     //    });
     //  },
-    jump: function(id) {
+    jump: function (id) {
       this.$router.push({ path: `category/${id}` });
       console.log(id);
     },
@@ -132,8 +126,8 @@ export default {
       current.classList.remove("fadeout");
       prev.classList.remove("fadein");
       prev.classList.add("fadeout");
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

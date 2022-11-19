@@ -55,29 +55,29 @@ export default {
       password: "iii1006",
       images: {},
       title: "",
-      imageData: ""
+      imageData: "",
     };
   },
   methods: {
-    onChangeImage: function(e) {
+    onChangeImage: function (e) {
       this.image = e.target.files[0];
       const files = e.target.files;
 
       if (files.length > 0) {
         const file = files[0];
         const reader = new FileReader();
-        reader.onload = e => {
+        reader.onload = (e) => {
           this.imageData = e.target.result;
         };
         reader.readAsDataURL(file);
       }
     },
 
-    postImage: function() {
+    postImage: function () {
       const config = {
         header: {
-          "Content-Type": "multipart/form-data"
-        }
+          "Content-Type": "multipart/form-data",
+        },
       };
 
       var formData = new FormData();
@@ -88,18 +88,18 @@ export default {
       formData.append("password", this.password);
 
       axios
-        .post("http://127.0.0.1:8000/api/register", formData, config, {
-          //title: this.title,
+        .post("${process.env.BASE_URL}/register", formData, config, {
+          // "http://127.0.0.1:8000/api/register", formData, config
           name: this.name,
           email: this.email,
-          password: this.password
+          password: this.password,
         })
-        .then(res => {
+        .then((res) => {
           (this.name = ""), (this.email = ""), (this.saved = true);
           console.log(res);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

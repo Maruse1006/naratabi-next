@@ -124,6 +124,9 @@ height:200vh;
         bottom:0;
 
 }
+.v-list{
+  z-index:10;
+}
 .v-height{
   height:200vh;
 }
