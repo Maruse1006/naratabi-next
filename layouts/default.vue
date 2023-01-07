@@ -85,6 +85,11 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'myページ',
           to:'/dashboard'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'loginページへ',
+          to:'/login'
         }
       ],
       miniVariant: false,

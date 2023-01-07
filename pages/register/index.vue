@@ -121,17 +121,22 @@ export default {
 }
 .back_image {
   color: black;
-  padding-top: 50px;
   display: flex;
   width: 130%;
   z-index: 5;
   left: 0;
 }
 .back_image img {
-  min-height: 100vh;
-  width: 100%;
+  min-height: 200vh;
+  width: 140%;
 }
 .input {
   color: black;
+}
+@media screen and (max-width: 400px) {
+  .back_image img[data-v-965aa0f8] {
+    min-height: 200vh;
+    width: 140%;
+  }
 }
 </style>

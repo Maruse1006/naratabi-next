@@ -98,13 +98,13 @@ export default {
   },
   axios: {
     // baseURL: "http://ec2-54-199-154-70.ap-northeast-1.compute.amazonaws.com",
-    baseURL: process.env.BASE_URL,
+    //baseURL: process.env.BASE_URL,
     // baseURL: ENV.BASE_URL,
     // proxyを使用する場合baseURLは併用できないためコメントアウト
     // baseURL: process.env.API_BASE_URL,
     // baseURL と proxy を同時に使用することはできないためprefixを設定し、baseURLとして使用する
-    // prefix: process.env.BASE_URL,
-    // proxy: true,
+    prefix: process.env.BASE_URL,
+    proxy: true,
   },
   auth: {
     redirect: {

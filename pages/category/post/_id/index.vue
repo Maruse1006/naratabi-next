@@ -103,11 +103,8 @@
 </template>
 
 <script>
-//import VueAwesomeSwiper from 'vue-awesome-swiper'
-//import 'swiper/dist/css/swiper.css'
 import axios from "axios";
 import Modal from "~/components/Modal.vue";
-import FirstChild from "@/components/FirstChild.vue";
 
 export default {
   layout: "list",

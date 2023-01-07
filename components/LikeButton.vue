@@ -17,14 +17,14 @@ export default {
   props: {
     id: {
       type: Number,
-      default: ""
-    }
+      default: "",
+    },
   },
   data() {
     return {
       image: {},
       imageId: {},
-      buttonstate: false
+      buttonstate: false,
     };
   },
   methods: {
@@ -33,21 +33,23 @@ export default {
       // axios.post(`http://127.0.0.1:8000/api/like/${id}`)
       this.buttonstate = !this.buttonstate;
       axios
-        .post(`http://127.0.0.1:8000/api/like/${imageId}`)
-        .then(res => {})
-        .catch(function(error) {
+        //  .post(`http://127.0.0.1:8000/api/like/${imageId}`)
+        .post(`${process.env.BASE_URL}${imageId}`)
+        .then((res) => {})
+        .catch(function (error) {
           console.log(error);
         });
     },
 
-    getCategories: function() {
-      axios.get(`http://127.0.0.1:8000/api/show`).then(response => {
+    getCategories: function () {
+      // axios.get(`http://127.0.0.1:8000/api/show`).then(response => {
+      axios.get(`${process.env.BASE_URL}show`).then((response) => {
         this.images = response.data.images;
         this.path = response.data.path;
         console.log(response.data.path);
       });
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

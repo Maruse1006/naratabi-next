@@ -76,12 +76,7 @@ export default {
       ],
     };
   },
-  created() {
-    axios.get(`${process.env.BASE_URL}`).then((response) => {
-      this.categories = response.data.categories;
-      console.log(response.data);
-    });
-  },
+  created() {},
   mounted() {
     setInterval(() => {
       this.current_slide =
@@ -89,10 +84,13 @@ export default {
           ? this.current_slide + 1
           : 0;
     }, 6000),
-      console.info(
-        "this.$axios.defaults.baseURL:",
-        this.$axios.defaults.baseURL
-      );
+      console.info("this.$axios.baseURL:", this.$axios.baseURL);
+    axios.get(`${process.env.BASE_URL}/`).then((response) => {
+      // axios.get(`http://127.0.0.1:8000/api/category`).then((response) => {
+      // axios.get(`/`).then((response) => {
+      this.categories = response.data.categories;
+      console.log(response.data);
+    });
   },
   methods: {
     //  getCategories: function() {

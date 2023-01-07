@@ -103,10 +103,11 @@ export default {
     getCategories: function () {
       var url;
       if (this.$auth.loggedIn) {
-        url = "${process.env.BASE_URL}/show";
+        url = `${process.env.BASE_URL}/show`;
+        //"${process.env.BASE_URL}/show"
       } else {
-        url = "{process.env.BASE_URL}/show/show";
-        // http://127.0.0.1:8000/api/show/show
+        url = `${process.env.BASE_URL}/show/show`;
+        //${process.env.BASE_URL}/show/show"
       }
       axios.get(url).then((response) => {
         this.images = response.data.images;

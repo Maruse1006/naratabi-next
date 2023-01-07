@@ -1,14 +1,12 @@
 <template>
   <v-app dark>
     <!-- <h1 v-if="error.statusCode === 404"> -->
-    <div class="title">投稿するにはログインが必要です。</div>
+    <!-- <div class="title">投稿するにはログインが必要です。</div> -->
     <!-- </h1> -->
     <!-- <h1 v-else>
       {{ otherError }}
     </h1> -->
-    <button v-on:click="move" class="login">
-      loginページへ
-    </button>
+    <button v-on:click="move" class="login">loginページへ</button>
   </v-app>
 </template>
 
@@ -18,27 +16,27 @@ export default {
   props: {
     error: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
       pageNotFound: "404 Not Found",
-      otherError: "An error occurred"
+      otherError: "An error occurred",
     };
   },
   methods: {
     move() {
       this.$router.push("./login");
-    }
+    },
   },
   head() {
     const title =
       this.error.statusCode === 404 ? this.pageNotFound : this.otherError;
     return {
-      title
+      title,
     };
-  }
+  },
 };
 </script>
 
