@@ -54,7 +54,7 @@ export default {
   created() {
     axios
       .get(
-        `http://127.0.0.1:8000/api/category/post/review/${this.$route.params.id}`
+        `${process.env.BASE_URL}category/post/review/${this.$route.params.id}`
       )
       .then(response => {
         this.review = response.data.review;
@@ -132,15 +132,16 @@ export default {
 .back_image img {
   width: 100%;
   height: 50%;
-  height: 150px;
+  height: 200px;
 }
 h1{
   position: absolute;
-  top: 20%;
-  color: #fff;
-  font-family: serif;
-  text-align: center;
-  left: 40%;
+    top: 20%;
+    color: #fff;
+    font-family: serif;
+    text-align: center;
+    
+    width: 100%;
   
 }
 </style>

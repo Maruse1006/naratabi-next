@@ -35,10 +35,9 @@
 <script>
 import axios from "axios";
 export default {
-  layout: "list",
   created() {
     axios
-      .get(`${process.env.BASE_URL}/category/${this.$route.params.id}`)
+      .get(`${process.env.BASE_URL}category/${this.$route.params.id}`)
       .then((response) => {
         this.posts = response.data.posts;
         this.length = Math.ceil(this.posts.length / this.pageSize);
@@ -157,6 +156,7 @@ export default {
   .title {
     color: #000;
     text-align: center;
+    padding-top: 10%;
   }
 
   .post_name {
@@ -200,7 +200,7 @@ export default {
     color: #000;
   }
   .nav {
-    padding-top: 10%;
+    padding-bottom: 30%;
   }
 }
 .container {

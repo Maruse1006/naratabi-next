@@ -3,7 +3,7 @@
     <div class="item">
       <div class="name">
         <div class="post_name">
-          <p>{{ post.name }}</p>
+          <h>{{ post.name }}</h>
         </div>
         <div class="post_image">
           <div class="content">
@@ -59,11 +59,18 @@
       <div class="googlemap_box">
         <div class="access"><iframe v-bind:src="post.googlemap"></iframe></div>
       </div>
-      <div class="button">
-        <v-btn @click="open">レビュー投稿</v-btn>
-      </div>
-      <div class="review">
-        <nuxt-link :to="`../post/review/${post.id}`"> レビュー一覧へ</nuxt-link>
+      <div class="box">
+        <div class="area_image">
+          <img v-bind:src="post.area_img" />
+        </div>
+        <div class="button">
+          <v-btn @click="open">レビュー投稿</v-btn>
+        </div>
+        <div class="review">
+          <nuxt-link :to="`../post/review/${post.id}`">
+            レビュー一覧へ</nuxt-link
+          >
+        </div>
       </div>
       <div class="dialog">
         <v-dialog v-model="dialog">
@@ -113,7 +120,7 @@ export default {
   },
   created() {
     axios
-      .get(`${process.env.BASE_URL}/category/post/${this.$route.params.id}`)
+      .get(`${process.env.BASE_URL}category/post/${this.$route.params.id}`)
       .then((response) => {
         this.post = response.data.post;
         this.id = response.data.id;
@@ -173,7 +180,7 @@ export default {
     },
     onSubmit() {
       axios
-        .post(`http://127.0.0.1:8000/api/review`, this.reviewParams)
+        .post(`${process.env.BASE_URL}review`, this.reviewParams)
         .then((response) => {
           if (response.data.result === true) {
             getPosts();
@@ -238,13 +245,11 @@ export default {
 }
 
 .post_name {
-  top: 30%;
-  font-size: 15px;
+  font-size: 30px;
   font-family: serif;
-  border-bottom: solid 2px orange;
   width: 88%;
-  padding-top: 30%;
-  margin-left: 6%;
+  padding-left: 5%;
+  padding-top: 20%;
 }
 .post_content {
   width: 80%;
@@ -267,6 +272,17 @@ export default {
   padding-left: 20px;
   width: 40%;
   height: 40%;
+}
+.area_name {
+  position: absolute;
+  left: 46%;
+  top: 60%;
+}
+.area_map img {
+  position: absolute;
+  left: 26%;
+  top: 65%;
+  width: 50%;
 }
 .item {
   color: #696969;
@@ -422,12 +438,20 @@ h5 {
   padding-right: 10px;
 }
 @media screen and (min-width: 700px) {
+  .area_image img {
+    position: relative;
+    width: 50%;
+    left: 30%;
+  }
   .review {
     color: blue;
     top: 80%;
     left: 5%;
     margin: 0 auto;
     padding-top: 5%;
+  }
+  .post_name {
+    padding-left: 3%;
   }
   .button {
     position: relative;
@@ -442,6 +466,45 @@ h5 {
     left: 42%;
     width: 40%;
     padding-top: 5%;
+    padding-left: 30%;
+  }
+  .x {
+    display: flex;
+  }
+  .area_name {
+    position: absolute;
+    left: 42%;
+    color: brown;
+    top: 68%;
+    z-index: 10;
+  }
+  .x {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 600px) {
+  .area_name {
+    position: absolute;
+    left: 42%;
+    color: brown;
+    top: 68%;
+    z-index: 10;
+  }
+  .area_image img {
+    position: relative;
+    width: 50%;
+    left: 30%;
+  }
+  .area {
+    display: flex;
+    flex-direction: wrap;
+  }
+  .box {
+    flex-direction: wrap;
+  }
+  .x {
+    display: flex;
   }
 }
 </style>

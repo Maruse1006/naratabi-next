@@ -34,7 +34,7 @@
                 @change="onChangeImage"
                 class="preview"
               />
-              <img :src="imageData" v-if="imageData" />
+              <img :src="imageData" v-if="imageData" class="photo" />
             </div>
           </div>
           <button class="input" @click="postImage">送信</button>
@@ -88,7 +88,7 @@ export default {
       formData.append("password", this.password);
 
       axios
-        .post("${process.env.BASE_URL}/register", formData, config, {
+        .post(`${process.env.BASE_URL}register`, formData, config, {
           // "http://127.0.0.1:8000/api/register", formData, config
           name: this.name,
           email: this.email,
@@ -103,9 +103,8 @@ export default {
 };
 </script>
 <style scoped>
-.file {
-  /* position: absolute;
-  top: 30%; */
+.file img {
+  width: 30%;
 }
 .title {
   position: absolute;
@@ -132,6 +131,12 @@ export default {
 }
 .input {
   color: black;
+}
+.preview img {
+  width: 10%;
+}
+.photo img {
+  width: 10%;
 }
 @media screen and (max-width: 400px) {
   .back_image img[data-v-965aa0f8] {

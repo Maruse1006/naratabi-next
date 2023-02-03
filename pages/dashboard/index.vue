@@ -6,7 +6,9 @@
       <!-- {{$auth.id}} -->
       <div class="login">ログイン状態：{{ $auth.loggedIn }}</div>
       <!-- <div class="id">ユーザーid：{{ $auth.user.id}}</div> -->
-      <div class="name">ユーザー名：{{ $auth.user.user }}</div>
+      <div v-if="$auth.loggedIn" class="name">
+        ユーザー名：{{ $auth.user.user }}
+      </div>
 
       <div class="button">
         <div class="logout">
@@ -26,7 +28,7 @@ export default {
   created() {
     console.log(this.$auth);
   },
-  methods: {}
+  methods: {},
 };
 </script>
 <style scoped>

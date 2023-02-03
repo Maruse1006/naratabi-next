@@ -96,6 +96,12 @@ export default {
   router: {
     //middleware: ['auth']
   },
+  proxy: {
+    "/api/": {
+      target: "'http://localhost:8000/'",
+      pathRewrite: { "^/api/": "" },
+    },
+  },
   axios: {
     // baseURL: "http://ec2-54-199-154-70.ap-northeast-1.compute.amazonaws.com",
     //baseURL: process.env.BASE_URL,
@@ -119,9 +125,9 @@ export default {
           type: "Bearer",
         },
         endpoints: {
-          login: { url: "api/login", method: "post", propertyName: "token" },
-          user: { url: "api/user", method: "get", propertyName: false },
-          logout: { url: "api/logout", method: "post" },
+          login: { url: "/login", method: "post", propertyName: "token" },
+          user: { url: "/user", method: "get", propertyName: false },
+          logout: { url: "/logout", method: "post" },
         },
       },
     },

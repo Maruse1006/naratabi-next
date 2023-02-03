@@ -34,7 +34,7 @@ export default {
       // axios.post(`http://127.0.0.1:8000/api/like/${id}`)
       this.buttonstate = !this.buttonstate;
       axios
-        .post(`${process.env.BASE_URL}${imageId}`)
+        .post(`${process.env.BASE_URL}like/${imageId}`)
         .then((res) => {})
         .catch(function (error) {
           console.log(error);

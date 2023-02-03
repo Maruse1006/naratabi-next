@@ -1,29 +1,28 @@
 <template>
   <div class="box">
     <form @submit.prevent="loginUser">
-      <transition>
-        <div v-show="show" class="title">
-          <h1>ようこそ</h1>
-        </div>
-      </transition>
       <div class="image">
         <img
           src="https://naratabi.s3.ap-northeast-1.amazonaws.com/images/2115784_s.jpg"
         />
       </div>
-      <div class="ccc">
-        <div class="aaaa">
-          <label>メールアドレス</label><br />
-          <div class="email"><input v-model="form.email" /><br /></div>
-          <label>パスワード</label><br />
-          <div class="password"><input v-model="form.password" /><br /></div>
-          <div class="login">
-            <div class="submit">
-              <button type="submit">ログイン</button>
-            </div>
-            <div class="register">
-              <v-btn to="/register" nuxt class="bbb">新規登録</v-btn>
-            </div>
+
+      <div class="login">
+        <transition>
+          <div v-show="show" class="title">
+            <h1>ようこそ</h1>
+          </div>
+        </transition>
+        <label>メールアドレス</label><br />
+        <div class="email"><input v-model="form.email" /><br /></div>
+        <label>パスワード</label><br />
+        <div class="password"><input v-model="form.password" /><br /></div>
+        <div class="login_button">
+          <div class="submit">
+            <button type="submit">ログイン</button>
+          </div>
+          <div class="register">
+            <v-btn to="/register">新規登録</v-btn>
           </div>
         </div>
       </div>
@@ -47,7 +46,7 @@ service.register({
       delete config.auth;
     }
     return config;
-  }
+  },
 });
 
 export default {
@@ -59,22 +58,26 @@ export default {
   data() {
     return {
       form: {
-        email: "abcd@i.com",
+        email: "",
         // email: "aaa1006@.gmail",
-        password: "abcd",
-        Service: ""
+        password: "",
+        Service: "",
       },
-      show: true
+      show: true,
     };
   },
   methods: {
     loginUser() {
-      console.log(`a`);
-      this.$auth.loginWith("local", {
-        data: this.form
-      });
-    }
-  }
+      this.$auth
+        .loginWith("local", {
+          data: this.form,
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("メールアドレスもしくはパスワードが異なります");
+        });
+    },
+  },
 };
 </script>
 <style scoped>
@@ -84,16 +87,13 @@ export default {
 }
 
 .register {
-  padding-top: 20%;
-  width: 10%;
-  height: 10%;
   margin-top: 20px;
-  position: absolute;
-  left: 18%;
+  /* position: absolute;
+  left: 18%; */
 }
 .box {
   text-align: center;
-  //padding-top: 5%;
+  /* padding-top: 5%; */
 }
 h1 {
   font-size: 40px;
@@ -111,8 +111,6 @@ h1 {
   }
 }
 .email {
-  border: 1px solid #333;
-  background: #e4fdff;
   cursor: pointer;
   color: white;
   width: 50%;
@@ -125,8 +123,6 @@ h1 {
   animation: fadeIn 3s ease 0.3s 1 normal;
 }
 .password {
-  border: 1px solid #333;
-  background: #e4fdff;
   cursor: pointer;
   width: 50%;
   margin: 0 auto;
@@ -141,21 +137,27 @@ h1 {
   color: black;
 }
 .login {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
+}
+.login_button {
   border-radius: 100vh;
+  line-height: 40px;
   background-color: #eb6100;
-  width: 120%;
-  height: 35%;
+  width: 200px;
+  height: 40px;
   margin: 0 auto;
   margin-top: 5%;
-  position: absolute;
-  top: 120%;
-  left: 15%;
   color: white;
   animation: fadeIn 3s ease 0.3s 1 normal;
 }
 .box img {
   min-height: 100vh;
-  width: 150%;
+  width: 100vw;
   top: 0;
   left: 0;
   position: relative;
@@ -163,19 +165,12 @@ h1 {
   /* opacity: 0.6; */
 }
 .aaaa {
-  position: absolute;
-  top: 30%;
-  left: 25%;
   color: black;
-  //z-index: 10;
+  /* //z-index: 10; */
 }
 .title {
-  position: absolute;
   color: black;
-  left: 25%;
-  top: 20%;
-
-  width: 60%;
+  text-align: center;
   animation: fadein-anim 15s linear forwards;
 }
 @keyframes fadein-anim {
@@ -208,5 +203,16 @@ input {
 }
 .v-enter-to {
   opacity: 1;
+}
+@media screen and (min-width: 800px) {
+  .title {
+    color: black;
+
+    animation: fadein-anim 15s linear forwards;
+  }
+  .aaaa {
+    color: black;
+    /* //z-index: 10; */
+  }
 }
 </style>

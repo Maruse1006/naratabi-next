@@ -39,29 +39,29 @@ export default {
       saved: false,
       images: {},
       title: "",
-      imageData: ""
+      imageData: "",
     };
   },
   methods: {
-    onChangeImage: function(e) {
+    onChangeImage: function (e) {
       this.image = e.target.files[0];
       const files = e.target.files;
 
       if (files.length > 0) {
         const file = files[0];
         const reader = new FileReader();
-        reader.onload = e => {
+        reader.onload = (e) => {
           this.imageData = e.target.result;
         };
         reader.readAsDataURL(file);
       }
     },
 
-    postImage: function() {
+    postImage: function () {
       const config = {
         headers: {
-          "Content-Type": "multipart/form-data"
-        }
+          "Content-Type": "multipart/form-data",
+        },
       };
 
       var formData = new FormData();
@@ -70,14 +70,14 @@ export default {
       formData.append("title", this.title);
 
       axios
-        .post("http://127.0.0.1:8000/api/form/s3", formData, config)
-        .then(res => {
+        .post(`${process.env.BASE_URL}form/s3`, formData, config)
+        .then((res) => {
           this.title = "";
           this.saved = true;
           console.log(res);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

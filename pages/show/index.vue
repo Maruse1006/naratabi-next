@@ -103,10 +103,10 @@ export default {
     getCategories: function () {
       var url;
       if (this.$auth.loggedIn) {
-        url = `${process.env.BASE_URL}/show`;
+        url = `${process.env.BASE_URL}show`;
         //"${process.env.BASE_URL}/show"
       } else {
-        url = `${process.env.BASE_URL}/show/show`;
+        url = `${process.env.BASE_URL}show/show`;
         //${process.env.BASE_URL}/show/show"
       }
       axios.get(url).then((response) => {
@@ -172,7 +172,7 @@ h1 {
 .flex img {
   width: 120px;
   height: 100px;
-  padding: 10px;
+  padding: 14px;
 }
 
 label {

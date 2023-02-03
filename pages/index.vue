@@ -85,11 +85,12 @@ export default {
           : 0;
     }, 6000),
       console.info("this.$axios.baseURL:", this.$axios.baseURL);
-    axios.get(`${process.env.BASE_URL}/`).then((response) => {
+    axios.get(`${process.env.BASE_URL}category`).then((response) => {
       // axios.get(`http://127.0.0.1:8000/api/category`).then((response) => {
       // axios.get(`/`).then((response) => {
       this.categories = response.data.categories;
       console.log(response.data);
+      console.log(response.data.categories);
     });
   },
   methods: {
@@ -108,7 +109,7 @@ export default {
       if (this.$auth.loggedIn) {
         this.$router.push("./form");
       } else {
-        this.$router.push("./");
+        this.$router.push("./error");
       }
       console.log(user);
     },
@@ -163,6 +164,7 @@ export default {
   margin: 30px;
   z-index: 10;
   color: #fff;
+  z-index: 1;
 }
 .title::after {
   background-color: #fff;

@@ -1,7 +1,6 @@
 <template>
   <v-app dark>
-    <!-- <h1 v-if="error.statusCode === 404"> -->
-    <!-- <div class="title">投稿するにはログインが必要です。</div> -->
+    <div class="title">投稿するにはログインが必要です。a</div>
     <!-- </h1> -->
     <!-- <h1 v-else>
       {{ otherError }}
@@ -27,7 +26,7 @@ export default {
   },
   methods: {
     move() {
-      this.$router.push("./login");
+      this.$router.push("/login");
     },
   },
   head() {

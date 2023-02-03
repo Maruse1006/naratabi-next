@@ -34,13 +34,12 @@ export default {
       this.buttonstate = !this.buttonstate;
       axios
         //  .post(`http://127.0.0.1:8000/api/like/${imageId}`)
-        .post(`${process.env.BASE_URL}${imageId}`)
+        .post(`${process.env.BASE_URL}like/${imageId}`)
         .then((res) => {})
         .catch(function (error) {
           console.log(error);
         });
     },
-
     getCategories: function () {
       // axios.get(`http://127.0.0.1:8000/api/show`).then(response => {
       axios.get(`${process.env.BASE_URL}show`).then((response) => {
