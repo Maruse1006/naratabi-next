@@ -93,7 +93,7 @@ export default {
   .container {
     margin: 0 auto;
     background-color: #fff;
-    height: 1000vh;
+    height: 100vh;
     width: 100%;
   }
   .list {

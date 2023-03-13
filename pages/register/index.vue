@@ -1,58 +1,47 @@
 <template>
-  <div>
-    <div class="back_image">
+  <div class="box">
+    <div class="image">
       <img
         src="https://naratabi.s3.ap-northeast-1.amazonaws.com/images/2115784_s.jpg"
-        style="width=100%"
       />
     </div>
-    <div class="wrapper">
-      <div class="box"></div>
-      <div class="title">
-        <div class="clumn">
-          <div class="name">
-            <a>name </a>
-            <input type="text" v-model="name" />
-          </div>
-          <div class="email">
-            <a>email</a>
-            <input type="email" v-model="email" placeholder="email" required />
-          </div>
-          <div class="password">
-            <a>パスワード</a>
-            <input
-              type="password"
-              v-model="password"
-              placeholder="password"
-              required
-            />
-            <div class="file">
-              <input
-                type="file"
-                ref="preview"
-                accept="image/jpeg, image/png"
-                @change="onChangeImage"
-                class="preview"
-              />
-              <img :src="imageData" v-if="imageData" class="photo" />
-            </div>
-          </div>
-          <button class="input" @click="postImage">送信</button>
+
+    <div class="login">
+      <transition>
+        <div class="title">
+          <h1>新規登録</h1>
         </div>
+      </transition>
+      <label>name</label><br />
+      <div class="name"><input type="text" v-model="name" /><br /></div>
+      <label>email</label><br />
+      <div class="email"><input type="text" v-model="email" /><br /></div>
+      <label>パスワード</label><br />
+      <div class="password"><input v-model="password" /><br /></div>
+      <div class="file">
+        <input
+          type="file"
+          ref="preview"
+          accept="image/jpeg, image/png"
+          @change="onChangeImage"
+          class="preview"
+          width="100px"
+        />
       </div>
+      <button class="input" @click="postImage">送信</button>
     </div>
   </div>
 </template>
-
 <script>
 import axios from "axios";
+
 export default {
   data() {
     return {
       saved: false,
-      name: "iii",
-      email: "iii@i.com",
-      password: "iii1006",
+      name: "",
+      email: "",
+      password: "",
       images: {},
       title: "",
       imageData: "",
@@ -103,45 +92,154 @@ export default {
 };
 </script>
 <style scoped>
-.file img {
-  width: 30%;
+.image img {
+  margin: 0 auto;
+  opacity: 0.6;
+}
+
+.register {
+  margin-top: 20px;
+  /* position: absolute;
+  left: 18%; */
+}
+.box {
+  text-align: center;
+  /* padding-top: 5%; */
+}
+h1 {
+  font-size: 40px;
+  display: inline-block;
+  font-weight: 200;
+  position: abusolute;
+  animation: fadeIn 3s ease 0.3s 1 normal;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 5;
+  }
+}
+.name {
+  animation: fadein-anim 15s linear forwards;
+  animation: fadeIn 3s ease 0.3s 1 normal;
+}
+.email {
+  cursor: pointer;
+  color: white;
+  width: 50%;
+  margin: 0 auto;
+  top: 70%;
+  left: 30%;
+  z-index: 10;
+  animation: fadein-anim 15s linear forwards;
+  animation: fadeIn 3s ease 0.3s 1 normal;
+}
+.password {
+  cursor: pointer;
+  width: 50%;
+  margin: 0 auto;
+  animation: fadein-anim 15s linear forwards;
+  animation: fadeIn 3s ease 0.3s 1 normal;
+}
+.password1 {
+  position: relative;
+  top: 50%;
+  left: 5%;
+  z-index: 10;
+  color: black;
+}
+.login {
+  width: 100%;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
+}
+.login_button {
+  border-radius: 100vh;
+  line-height: 40px;
+  background-color: #eb6100;
+  width: 200px;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 5%;
+  color: white;
+  animation: fadeIn 3s ease 0.3s 1 normal;
+}
+.box img {
+  min-height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  position: relative;
+  z-index: 0;
+  /* opacity: 0.6; */
+}
+.aaaa {
+  color: black;
+  /* //z-index: 10; */
 }
 .title {
+  color: black;
+  text-align: center;
+  animation: fadein-anim 15s linear forwards;
+}
+@keyframes fadein-anim {
+  100% {
+    opacity: 5;
+  }
+}
+input {
+  background-color: white;
+  outline: solid 2px black;
+}
+.bbb {
+  top: 135%;
+  /* margin: 0 auto; */
   position: absolute;
-  top: 100px;
-  left: 300px;
-  display: flex;
-  flex-direction: wrap;
+  animation: fadein-anim 15s linear forwards;
+  animation: fadeIn 3s ease 0.3s 1 normal;
 }
-.colum {
-  display: flex;
-  flex-direction: wrap;
-  top: 50%;
+.tran {
+  background-color: black;
+  position: absolute;
+  top: 40%;
 }
-.back_image {
-  color: black;
-  display: flex;
-  width: 130%;
-  z-index: 5;
-  left: 0;
+.v-enter-active {
+  transition: opacity 1s;
 }
-.back_image img {
-  min-height: 200vh;
-  width: 140%;
+
+.v-enter {
+  opacity: 0;
 }
-.input {
-  color: black;
+.v-enter-to {
+  opacity: 1;
 }
-.preview img {
-  width: 10%;
+.preview {
+  width: 120px;
+  margin-top: 20px;
+  animation: fadein-anim 15s linear forwards;
+  animation: fadeIn 3s ease 0.3s 1 normal;
 }
-.photo img {
-  width: 10%;
-}
-@media screen and (max-width: 400px) {
-  .back_image img[data-v-965aa0f8] {
-    min-height: 200vh;
-    width: 140%;
+@media screen and (min-width: 800px) {
+  .title {
+    color: black;
+
+    animation: fadein-anim 15s linear forwards;
+  }
+  .aaaa {
+    color: black;
+    /* //z-index: 10; */
+  }
+  .preview input {
+    width: 120px;
+    margin-top: 20px;
+  }
+  input.preview {
+    margin-top: 20px;
   }
 }
 </style>

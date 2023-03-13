@@ -7,13 +7,9 @@
           style="width=100%"
         />
         <h1>投稿一覧</h1>
-        <p>
-          奈良の写真を投稿することができます。 投稿ページは
-          <NuxtLink to="/form"> こちらへ </NuxtLink>
-        </p>
+        <v-btn @click="move" class="button">投稿ページへ</v-btn>
       </div>
     </div>
-
     <vue-star animate="animated bounceIn" color="#222222">
       <i slot="icon" class="fa fa-heart"></i>
     </vue-star>
@@ -80,6 +76,13 @@ export default {
     this.getCategories();
   },
   methods: {
+    move() {
+      if (this.$auth.loggedIn) {
+        this.$router.push("./form");
+      } else {
+        this.$router.push("./error");
+      }
+    },
     favorite(imageId) {
       console.log(imageId);
       // axios.post(`http://127.0.0.1:8000/api/like/${id}`)

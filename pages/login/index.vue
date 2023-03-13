@@ -9,7 +9,7 @@
 
       <div class="login">
         <transition>
-          <div v-show="show" class="title">
+          <div v-show="shoaw" class="title">
             <h1>ようこそ</h1>
           </div>
         </transition>
